@@ -1,5 +1,4 @@
 # GS
-game store
 
 ## Table of contents
 * [General info](#general-info)
@@ -11,12 +10,13 @@ game store
 * [Authors](#authors)
 
 ## General info
-
+It is a game store with payment processor.
 
 <img src="./images/aa.jpg" data-canonical-src="./images/aa.jpg" width="183" height="340"/>
 
 ## Features
-- 
+- payment processing
+- storing sessions
 
 ## Technologies
 App was created with:
@@ -27,7 +27,7 @@ App was created with:
 - 
 
 ## Setup
-
+...
 
 ## Sources
 This app is inspired by [@...](link).
