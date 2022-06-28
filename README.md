@@ -1,4 +1,4 @@
-# GS
+# GamesForYou (G4U)
 
 ## Table of contents
 * [General info](#general-info)
@@ -10,7 +10,7 @@
 * [Authors](#authors)
 
 ## General info
-It is a game store with payment processor.
+G4U is a game store with payment processor.
 
 <img src="./images/aa.jpg" data-canonical-src="./images/aa.jpg" width="183" height="340"/>
 
