@@ -20,7 +20,7 @@ It is a game store with payment processor.
 
 ## Technologies
 App was created with:
-- Java
+- Spring Boot
 - HTML5
 
 ## Requirements
