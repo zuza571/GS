@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!-- it shows when someone will buy the product -->
+<form>
+    <fieldset>
+        <legend>Personal data</legend>
+        <div class="form-group">
+            <label for="nameInput" class="form-label mt-4">Name</label>
+            <input type="text" class="form-control" id="nameInput" placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+            <label for="surnameInput" class="form-label mt-4">Surname</label>
+            <input type="text" class="form-control" id="surnameInput" placeholder="Enter your surname">
+        </div>
+        <div class="form-group">
+            <label for="emailInput" class="form-label mt-4">Email address</label>
+            <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Enter your email">
+            <small id="emailHelp" class="form-text text-muted">for example kowalski123@example.com</small>
+        </div>
+        <div class="form-group">
+            <label for="numberInput" class="form-label mt-4">Phone number</label>
+            <input type="number" class="form-control" id="numberInput" aria-describedby="numberHelp" placeholder="Enter your phone number">
+            <small id="numberHelp" class="form-text text-muted">for example +48 123 123 123</small>
+        </div>
+        <div class="form-group">
+            <label for="addressInput" class="form-label mt-4">Shipping address</label>
+            <input type="text" class="form-control" id="addressInput" aria-describedby="emailHelp" placeholder="Enter street and house number">
+            <input type="number" class="form-control" id="postcodeInput" aria-describedby="emailHelp" placeholder="Enter postcode">
+            <input type="text" class="form-control" id="townItem" aria-describedby="emailHelp" placeholder="Enter your town">
+        </div>
+
+        <!-- how many items -->
+        <div class="form-group">
+            <label for="itemsNumber" class="form-label mt-4">Number of items</label>
+            <select class="form-select" id="itemsNumber">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="moreInformation" class="form-label mt-4">More information for seller</label>
+            <textarea class="form-control" id="moreInformation" rows="3"></textarea>
+        </div>
+    </fieldset>
+</form>
+
+<!-- progress bar -->
+<div class="progress">
+    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+
+</body>
+</html>
