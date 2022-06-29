@@ -12,7 +12,7 @@
 ## General info
 G4U is a game store with payment processor.
 
-<img src="./images/aa.jpg" data-canonical-src="./images/aa.jpg" width="183" height="340"/>
+<!-- <img src="./images/aa.jpg" data-canonical-src="./images/aa.jpg" width="183" height="340"/> -->
 
 ## Features
 - payment processing
