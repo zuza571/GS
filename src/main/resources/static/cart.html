@@ -4,62 +4,85 @@
     <meta charset="UTF-8">
     <title>Cart</title>
 
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="style.css" rel="stylesheet">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Games4U</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-<!-- it shows when someone will buy the product -->
-<form>
-    <fieldset>
-        <legend>Personal data</legend>
-        <div class="form-group">
-            <label for="nameInput" class="form-label mt-4">Name</label>
-            <input type="text" class="form-control" id="nameInput" placeholder="Enter your name">
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/">Home
+                        <span class="visually-hidden">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cart">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+            </ul>
         </div>
-        <div class="form-group">
-            <label for="surnameInput" class="form-label mt-4">Surname</label>
-            <input type="text" class="form-control" id="surnameInput" placeholder="Enter your surname">
-        </div>
-        <div class="form-group">
-            <label for="emailInput" class="form-label mt-4">Email address</label>
-            <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Enter your email">
-            <small id="emailHelp" class="form-text text-muted">for example kowalski123@example.com</small>
-        </div>
-        <div class="form-group">
-            <label for="numberInput" class="form-label mt-4">Phone number</label>
-            <input type="number" class="form-control" id="numberInput" aria-describedby="numberHelp" placeholder="Enter your phone number">
-            <small id="numberHelp" class="form-text text-muted">for example +48 123 123 123</small>
-        </div>
-        <div class="form-group">
-            <label for="addressInput" class="form-label mt-4">Shipping address</label>
-            <input type="text" class="form-control" id="addressInput" aria-describedby="emailHelp" placeholder="Enter street and house number">
-            <input type="number" class="form-control" id="postcodeInput" aria-describedby="emailHelp" placeholder="Enter postcode">
-            <input type="text" class="form-control" id="townItem" aria-describedby="emailHelp" placeholder="Enter your town">
-        </div>
+    </div>
+</nav>
 
-        <!-- how many items -->
-        <div class="form-group">
-            <label for="itemsNumber" class="form-label mt-4">Number of items</label>
-            <select class="form-select" id="itemsNumber">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
+<div class="wrapper">
+    <h1>Shopping Cart</h1>
+    <div class="project">
+        <div class="shop">
+            <div class="box">
+                <!-- sample product -->
+                <!--
+                <img src="1.jpg">
+                -->
+                <div class="content">
+                    <!-- nazwa, zdjecie i cena z bazy danych !!! -->
+                    <h3>Women Lipsticks</h3>
+                    <h4>Price: $40</h4>
+                    <p class="unit">
+                        Quantity:
+                        <input name="" value="1">
+                    </p>
+                    <p class="btn-area">
+                        <i aria-hidden="true" class="fa fa-trash"></i>
+                        <span class="btn2">Remove</span>
+                    </p>
+                </div>
+            </div>
         </div>
-
-        <div class="form-group">
-            <label for="moreInformation" class="form-label mt-4">More information for seller</label>
-            <textarea class="form-control" id="moreInformation" rows="3"></textarea>
+        <div class="right-bar">
+            <p>
+                <span>Subtotal</span>
+                <!-- cena musi byc sumowana -->
+                <span>$120</span>
+            </p>
+            <hr>
+            <p>
+                <span>Shipping</span>
+                <span>$15</span>
+            </p>
+            <hr>
+            <p>
+                <span>Total</span>
+                <!-- tu tez sumowac cene -->
+                <span>$141</span>
+            </p>
+            <a href="/checkout">
+                <i class="fa fa-shopping-cart"></i>
+                Checkout
+            </a>
         </div>
-    </fieldset>
-</form>
-
-<!-- progress bar -->
-<div class="progress">
-    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
 </div>
 
 </body>
