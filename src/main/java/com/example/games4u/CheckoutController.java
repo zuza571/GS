@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CheckoutController {
 
     @RequestMapping("/checkout")
-    public String homePage(){
+    public String checkoutPage(){
         return "checkout.html";
     }
 }

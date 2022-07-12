@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Cart</title>
+    <link rel="shortcut icon" type="image/x-icon" href="icon.ico" />
 
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="style.css" rel="stylesheet">
@@ -26,12 +27,19 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/cart">Cart</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="/about">About</a>
                 </li>
             </ul>
+            <form class="navbar-cart">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cart">
+                            <i class="fa fa-shopping-basket"></i>
+                            Cart
+                        </a>
+                    </li>
+                </ul>
+            </form>
         </div>
     </div>
 </nav>
@@ -49,16 +57,30 @@
                     <!-- nazwa, zdjecie i cena z bazy danych !!! -->
                     <h3>Women Lipsticks</h3>
                     <h4>Price: $40</h4>
-                    <p class="unit">
-                        Quantity:
-                        <input name="" value="1">
-                    </p>
+                    <div class="quantity-area">
+                        <div class="btn-quantity">+</div>
+                        <div class="count">1</div>
+                        <div class="btn-quantity">-</div>
+                    </div>
                     <p class="btn-area">
                         <i aria-hidden="true" class="fa fa-trash"></i>
                         <span class="btn2">Remove</span>
                     </p>
                 </div>
             </div>
+            <div class="box">
+                <div class="content">
+                    <h3>Man's Watches</h3>
+                    <h4>Price: $40</h4>
+                    <div class="quantity-area">
+                        <div class="btn-quantity">+</div>
+                        <div class="count">1</div>
+                        <div class="btn-quantity">-</div>
+                    </div>
+                    <p class="btn-area"><i aria-hidden="true" class="fa fa-trash"></i> <span class="btn2">Remove</span></p>
+                </div>
+            </div>
+
         </div>
         <div class="right-bar">
             <p>
