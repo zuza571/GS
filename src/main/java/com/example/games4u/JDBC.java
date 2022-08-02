@@ -3,16 +3,16 @@ import java.sql.*;
 
 public class JDBC {
 
-    static String daneZBazy;
+    static String dataFromDB;
 
-    static void wyswietlDaneZBazy(ResultSet rs){
+    static void showData(ResultSet rs){
         try{
-            daneZBazy = rs.getString(1);
-            System.out.println("\n" + daneZBazy + " ");
-            daneZBazy = rs.getString(2);
-            System.out.println(daneZBazy + " ");
-            daneZBazy = rs.getString(3);
-            System.out.println(daneZBazy);
+            dataFromDB = rs.getString(1);
+            System.out.println("\n" + dataFromDB + " ");
+            dataFromDB = rs.getString(2);
+            System.out.println(dataFromDB + " ");
+            dataFromDB = rs.getString(3);
+            System.out.println(dataFromDB);
         }catch(SQLException e) {
             e.printStackTrace();
         }
@@ -20,29 +20,29 @@ public class JDBC {
 
     public static void main(String[] args) {
         String connectionURL = "jdbc:mysql://localhost:3306/mydb?user=root&password=zuzaikuba";
-        // Proste zapytanie do bazy danych
+        // Simple query to db
         String query = "Select * FROM mydb.games";
 
         Connection conn = null;
 
         try {
-            // Ustawiamy sterownik MySQL - jest to generalnie niepotrzebne gdyż dzieje się automatycznie
+            // We put the MySQL driver - it is generally unnecessary as it happens automatically
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Ustawiamy dane dotyczące połączenia
+            // We set the connection data
             conn = DriverManager.getConnection(connectionURL);
 
-            // Uruchamiamy zapytanie do bazy danych
+            // We run a query to the database
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
             while (rs.next()) {
-                wyswietlDaneZBazy(rs);
+                showData(rs);
             }
 
             conn.close();
         } catch (ClassNotFoundException e){
-            System.out.println("Problem ze sterownikiem");
+            System.out.println("driver's issue");
         } catch (SQLException e) {
             // e.printStackTrace();
             System.out.println("SQLException: " + e.getMessage());
