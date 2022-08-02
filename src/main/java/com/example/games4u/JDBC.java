@@ -6,14 +6,14 @@ public class JDBC {
     static String dataFromDB;
 
     static void showData(ResultSet rs){
-        try{
+        try {
             dataFromDB = rs.getString(1);
             System.out.println("\n" + dataFromDB + " ");
             dataFromDB = rs.getString(2);
             System.out.println(dataFromDB + " ");
             dataFromDB = rs.getString(3);
             System.out.println(dataFromDB);
-        }catch(SQLException e) {
+        } catch(SQLException e) {
             e.printStackTrace();
         }
     }
@@ -26,13 +26,13 @@ public class JDBC {
         Connection conn = null;
 
         try {
-            // We put the MySQL driver - it is generally unnecessary as it happens automatically
+            // putting the MySQL driver - it is generally unnecessary as it happens automatically
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // We set the connection data
+            // setting the connection data
             conn = DriverManager.getConnection(connectionURL);
 
-            // We run a query to the database
+            // running a query to the database
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 

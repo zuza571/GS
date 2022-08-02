@@ -38,7 +38,7 @@
             <artifactId>spring-boot-starter-data-jdbc</artifactId> <!-- or jpa idk !-->
         </dependency>
 
-        <!-- Use MySQL Connector-J -->
+        <!-- Using MySQL Connector-J -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
