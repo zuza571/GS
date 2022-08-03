@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Games4U</title>
@@ -49,29 +49,8 @@
        <div class="wrapper">
            <div class="shop">
                <div class="box">
-                   <!-- sample product -->
-                   <!--
-                   <img src="1.jpg">
-                   -->
-                   <div class="content">
-                       <!-- nazwa, zdjecie i cena z bazy danych !!! -->
-                       <h3>Women Lipsticks</h3>
-                       <h4>Price: $40</h4>
-                       <p class="btn-area">
-                           <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                           <span class="btn2">Add to cart</span>
-                       </p>
-                   </div>
-               </div>
-               <div class="box">
-                   <!-- sample product -->
-                   <!--
-                   <img src="1.jpg">
-                   -->
-                   <div class="content">
-                       <!-- nazwa, zdjecie i cena z bazy danych !!! -->
-                       <h3>Women Lipsticks</h3>
-                       <h4>Price: $40</h4>
+                   <div class="content" th:object="${g1}">
+                       <h3 th:text="${g1.name}" ></h3>
                        <p class="btn-area">
                            <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                            <span class="btn2">Add to cart</span>
@@ -79,20 +58,6 @@
                    </div>
                </div>
 
-               <div class="box" data-bind="foreach: games">
-                   <div class="content">
-                       <!-- nazwa, zdjecie i cena z bazy danych !!! -->
-                       <h3 data-bind="text: name"></h3>
-                       <h4>Price: </h4>
-                       <h4 data-bind="text: price"></h4>
-                       <h4>PLN</h4>
-                       <h5 data-bind="text: type"></h5>
-                       <p class="btn-area">
-                           <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                           <span class="btn2">Add to cart</span>
-                       </p>
-                   </div>
-               </div>
            </div>
        </div>
    </div>

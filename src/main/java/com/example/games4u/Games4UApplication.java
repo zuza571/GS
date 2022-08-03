@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
@@ -23,23 +24,12 @@ public class Games4UApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(Games4UApplication.class, args);
-
-        // the cheapest one is the worst one :D
-        Game g1 = new Game(1, "Grand Theft Auto V", "Sandbox", 100);
-        Game g2 = new Game(2, "The Witcher 3: Wild Hunt", "RPG", 120);
-        Game g3 = new Game(3, "The Last of Us: Part II", "Survival horror", 80);
-        Game g4 = new Game(4, "Cyberpunk 2077", "RPG", 150);
-
-        final List<Game> games = new ArrayList<>();
-        games.add(g1);
-        games.add(g2);
-        games.add(g3);
-        games.add(g4);
-
     }
 
     @RequestMapping("/")
-    public String homePage(){
+    public String homePage(Model model){
+        Game g1 = new Game(1, "Grand Theft Auto V", "Sandbox", 100);
+        model.addAttribute("g1",g1);
         return "index.html";
     }
 
