@@ -31,18 +31,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
-        <!-- ATTENTION 2 ERRORS BELOW -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jdbc</artifactId> <!-- or jpa idk -->
-        </dependency>
-
-        <!-- Using MySQL Connector-J -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
     </dependencies>
 
     <build>

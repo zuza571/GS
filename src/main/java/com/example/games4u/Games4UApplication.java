@@ -6,6 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @SpringBootApplication
 @Controller
@@ -26,6 +29,12 @@ public class Games4UApplication {
         Game g2 = new Game(2, "The Witcher 3: Wild Hunt", "RPG", 120);
         Game g3 = new Game(3, "The Last of Us: Part II", "Survival horror", 80);
         Game g4 = new Game(4, "Cyberpunk 2077", "RPG", 150);
+
+        final List<Game> games = new ArrayList<>();
+        games.add(g1);
+        games.add(g2);
+        games.add(g3);
+        games.add(g4);
 
     }
 
