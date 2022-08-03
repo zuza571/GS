@@ -7,14 +7,13 @@ public class Game {
     private String name;
     private String type;
     private int price;
-    private Image image;
+    private Image image; // do przemyslenia
 
-    public Game(int id, String name, String type, int price, Image image) {
+    public Game(int id, String name, String type, int price) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.price = price;
-        this.image = image;
     }
 
     public int getId() {
