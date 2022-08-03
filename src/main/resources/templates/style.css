@@ -67,20 +67,17 @@ body {
     height: 200px;
     object-fit: cover;
 }
-.content, .game-content {
+.content{
     padding: 20px;
     width: 100%;
     position: relative;
 }
 .content h3 {
     margin-bottom: 30px;
+    color: aqua;
 }
 .content h4 {
     margin-bottom: 50px;
-}
-
-.game-content h3 {
-    margin-right: 30px;
 }
 
 .quantity-area{
