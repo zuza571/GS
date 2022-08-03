@@ -11,7 +11,7 @@ body {
     margin-right: 20px;
 }
 .home-img {
-    background-image: url("images/games4u.png");
+    background-image: url("../templates/images/games4u.png");
     background-size: 50%;
     background-repeat: repeat;
 }
