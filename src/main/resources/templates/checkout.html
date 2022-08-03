@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Checkout</title>
@@ -56,19 +56,19 @@
         <div class="right-bar">
             <p>
                 <span>Subtotal</span>
-                <!-- cena musi byc sumowana -->
-                <span>$120</span>
+                <!-- cena musi byc sumowana w pętli -->
+                <span th:text="${g1.price} + ' PLN'"></span>
             </p>
             <hr>
             <p>
                 <span>Shipping</span>
-                <span>$15</span>
+                <span>15 PLN</span>
             </p>
             <hr>
             <p>
                 <span>Total</span>
-                <!-- tu tez sumowac cene -->
-                <span>$141</span>
+                <!-- tu tez sumowac cene ale jakos trzeba chyba parsowac -->
+                <span th:text="'0000' + ' PLN'"></span>
             </p>
 
             <!-- odpowiedni link do platnosci -->
