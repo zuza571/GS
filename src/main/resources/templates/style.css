@@ -67,7 +67,7 @@ body {
     height: 200px;
     object-fit: cover;
 }
-.content {
+.content, .game-content {
     padding: 20px;
     width: 100%;
     position: relative;
@@ -78,6 +78,11 @@ body {
 .content h4 {
     margin-bottom: 50px;
 }
+
+.game-content h3 {
+    margin-right: 30px;
+}
+
 .quantity-area{
     width: 15%;
     display: flex;
