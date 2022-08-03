@@ -35,7 +35,7 @@
         <!-- ATTENTION 2 ERRORS BELOW -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jdbc</artifactId> <!-- or jpa idk !-->
+            <artifactId>spring-boot-starter-data-jdbc</artifactId> <!-- or jpa idk -->
         </dependency>
 
         <!-- Using MySQL Connector-J -->
