@@ -22,7 +22,6 @@ public class Games4UApplication {
         Game g1 = new Game(1, "Grand Theft Auto V", "Sandbox", 100);
         model.addAttribute("g1", g1);
         return "index.html";
-        //
     }
 
 

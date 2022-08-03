@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Cart</title>
@@ -52,10 +52,10 @@
                 <!--
                 <img src="1.jpg">
                 -->
-                <div class="content">
+                <div class="content" th:object="${g1}">
                     <!-- nazwa, zdjecie i cena z bazy danych !!! -->
-                    <h3>Women Lipsticks</h3>
-                    <h4>Price: $40</h4>
+                    <h3 th:text="${g1.name}"></h3>
+                    <h4 th:text="'Price: ' + ${g1.price} + ' PLN'"></h4>
                     <div class="quantity-area">
                         <div class="btn-quantity">+</div>
                         <div class="count">1</div>
@@ -67,36 +67,23 @@
                     </p>
                 </div>
             </div>
-            <div class="box">
-                <div class="content">
-                    <h3>Man's Watches</h3>
-                    <h4>Price: $40</h4>
-                    <div class="quantity-area">
-                        <div class="btn-quantity">+</div>
-                        <div class="count">1</div>
-                        <div class="btn-quantity">-</div>
-                    </div>
-                    <p class="btn-area"><i aria-hidden="true" class="fa fa-trash"></i> <span class="btn2">Remove</span></p>
-                </div>
-            </div>
-
         </div>
         <div class="right-bar">
             <p>
                 <span>Subtotal</span>
-                <!-- cena musi byc sumowana -->
-                <span>$120</span>
+                <!-- cena musi byc sumowana w pętli -->
+                <span th:text="${g1.price} + ' PLN'"></span>
             </p>
             <hr>
             <p>
                 <span>Shipping</span>
-                <span>$15</span>
+                <span>15 PLN</span>
             </p>
             <hr>
             <p>
                 <span>Total</span>
-                <!-- tu tez sumowac cene -->
-                <span>$141</span>
+                <!-- tu tez sumowac cene ale jakos trzeba chyba parsowac -->
+                <span th:text="'0000' + ' PLN'"></span>
             </p>
             <a href="/checkout">
                 <i class="fa fa-shopping-cart"></i>
