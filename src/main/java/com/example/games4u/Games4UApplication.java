@@ -9,24 +9,31 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.sql.Blob;
+import java.sql.Connection;
 
 @SpringBootApplication
 @Controller
 public class Games4UApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MalformedURLException {
         SpringApplication.run(Games4UApplication.class, args);
 
         // Creating a new database
         // SQLiteDataBase.createNewDatabase("Games4UDataBase");
 
         // Connection to database
-        // SQLiteDataBase.connect();
+        Connection conn = SQLiteDataBase.connect();
 
         // Creating a new table
         // SQLiteDataBase.createNewTable();
+
+        File file = new File("https://drive.google.com/file/d/1yD-dR_3c63rOfESLPPQwfi3sZb7Y0NUQ/view?usp=sharing");
+        SQLiteDataBase.insert(1, "Cyberpunk 2077", "RPG", 150, file, conn);
     }
 
     @RequestMapping("/")

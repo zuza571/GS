@@ -1,5 +1,9 @@
 package com.example.games4u;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.sql.*;
 
@@ -24,6 +28,8 @@ public class SQLiteDataBase {
             System.out.println(e.getMessage());
         }
     }
+
+
 
     public static Connection connect() {
         Connection conn = null;
@@ -75,19 +81,31 @@ public class SQLiteDataBase {
         }
     }
 
-    public void insert(int id, String name, String type, int price, Blob image) {
+    public static void insert(int id, String name, String type, int price, File file, Connection conn) {
+
         String sql = "INSERT INTO games(id, name, type, price, image) VALUES(?,?,?,?,?)";
 
         try{
-            Connection conn = this.connect();
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, id);
             pstmt.setString(2, name);
             pstmt.setString(3, type);
             pstmt.setInt(4, price);
-            pstmt.setBlob(5, image);
+            byte[] fileContent = new byte[(int) file.length()];
+            FileInputStream fis = null;
+            try {
+                fis = new FileInputStream(file);
+                fis.read(fileContent);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (fis != null) {
+                    fis.close();
+                }
+            }
+            pstmt.setBytes(5, fileContent);
             pstmt.executeUpdate();
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             System.out.println(e.getMessage());
         }
     }
