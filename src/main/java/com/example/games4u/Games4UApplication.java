@@ -9,6 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 @SpringBootApplication
 @Controller
 public class Games4UApplication {
@@ -20,7 +23,7 @@ public class Games4UApplication {
         // SQLiteDataBase.createNewDatabase("Games4UDataBase");
 
         // Connection to database
-        SQLiteDataBase.connect();
+        // SQLiteDataBase.connect();
 
         // Creating a new table
         // SQLiteDataBase.createNewTable();

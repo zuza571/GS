@@ -1,5 +1,6 @@
 package com.example.games4u;
 
+import java.nio.file.Paths;
 import java.sql.*;
 
 public class SQLiteDataBase {
@@ -7,7 +8,9 @@ public class SQLiteDataBase {
 
     public static void createNewDatabase(String fileName) {
 
-        String url = "jdbc:sqlite:D:/Intellij IDEA/Intellij IDEA 2021.2.3/Games4U/" + fileName;
+        // URL for DataBase
+        String url = "jdbc:sqlite:" + Paths.get("").toAbsolutePath().toString() + "\\" + fileName;
+        System.out.println("new database url: " + url);
 
         try {
             Connection conn = DriverManager.getConnection(url);
@@ -25,8 +28,10 @@ public class SQLiteDataBase {
     public static Connection connect() {
         Connection conn = null;
         try {
-            // db parameters
-            String url = "jdbc:sqlite:D:/Intellij IDEA/Intellij IDEA 2021.2.3/Games4U/Games4UDataBase";
+            // db parameters - URL for DataBase
+            String url = "jdbc:sqlite:" + Paths.get("").toAbsolutePath().toString() + "\\" + "Games4UDataBase";
+            System.out.println("connection url: " + url);
+
             // create a connection to the database
             conn = DriverManager.getConnection(url);
 
@@ -48,7 +53,8 @@ public class SQLiteDataBase {
 
     public static void createNewTable() {
         // SQLite connection string
-        String url = "jdbc:sqlite:D:/Intellij IDEA/Intellij IDEA 2021.2.3/Games4U/Games4UDataBase";
+        String url = "jdbc:sqlite:" + Paths.get("").toAbsolutePath().toString() + "\\" + "Games4UDataBase";
+        System.out.println("table url: " + url);
 
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS games (\n"
