@@ -17,10 +17,10 @@ public class Games4UApplication {
         SpringApplication.run(Games4UApplication.class, args);
 
         // Creating a new database
-        // SQLiteDataBase.createNewDatabase("testowa_bazka");
+        // SQLiteDataBase.createNewDatabase("Games4UDataBase");
 
         // Connection to database
-        // SQLiteDataBase.connect();
+        SQLiteDataBase.connect();
 
         // Creating a new table
         // SQLiteDataBase.createNewTable();
@@ -28,8 +28,8 @@ public class Games4UApplication {
 
     @RequestMapping("/")
     public String homePage(Model model){
-        Game g1 = new Game(1, "Grand Theft Auto V", "Sandbox", 100);
-        model.addAttribute("g1", g1);
+        // Game g1 = new Game(1, "Grand Theft Auto V", "Sandbox", 100);
+        // model.addAttribute("g1", g1);
         return "index.html";
     }
 

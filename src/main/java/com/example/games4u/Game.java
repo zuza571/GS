@@ -1,19 +1,23 @@
 package com.example.games4u;
 
 import java.awt.*;
+import java.sql.Blob;
 
 public class Game {
     private int id;
     private String name;
     private String type;
     private int price;
-    private Image image; // do przemyslenia
+    private Blob image; // do przemyslenia
+    private Blob resume;
 
-    public Game(int id, String name, String type, int price) {
+    public Game(int id, String name, String type, int price, Blob image, Blob resume) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.price = price;
+        this.image = image;
+        this.resume = resume;
     }
 
     public int getId() {
@@ -48,11 +52,19 @@ public class Game {
         this.price = price;
     }
 
-    public Image getImage() {
+    public Blob getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public void setImage(Blob image) {
         this.image = image;
+    }
+
+    public Blob getResume() {
+        return resume;
+    }
+
+    public void setResume(Blob resume) {
+        this.resume = resume;
     }
 }

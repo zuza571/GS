@@ -26,7 +26,7 @@ public class SQLiteDataBase {
         Connection conn = null;
         try {
             // db parameters
-            String url = "jdbc:sqlite:D:/Intellij IDEA/Intellij IDEA 2021.2.3/Games4U/testowa_bazka";
+            String url = "jdbc:sqlite:D:/Intellij IDEA/Intellij IDEA 2021.2.3/Games4U/Games4UDataBase";
             // create a connection to the database
             conn = DriverManager.getConnection(url);
 
@@ -47,14 +47,16 @@ public class SQLiteDataBase {
 
     public static void createNewTable() {
         // SQLite connection string
-        String url = "jdbc:sqlite:D:/Intellij IDEA/Intellij IDEA 2021.2.3/Games4U/testowa_bazka";
+        String url = "jdbc:sqlite:D:/Intellij IDEA/Intellij IDEA 2021.2.3/Games4U/Games4UDataBase";
 
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS games (\n"
-                + " id INT PRIMARY KEY NOT NULL,\n"
-                + " name TEXT NOT NULL,\n"
+                + " id INT PRIMARY KEY NOT NULL, \n"
+                + " name TEXT NOT NULL, \n"
                 + " type TEXT NOT NULL, \n"
-                + " price INT NOT NULL \n"
+                + " price INT NOT NULL, \n"
+                + " image BLOB NOT NULL, \n"
+                + " resume BLOB NOT NULL \n"
                 + ");";
 
         try{
