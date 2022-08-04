@@ -9,15 +9,13 @@ public class Game {
     private String type;
     private int price;
     private Blob image; // do przemyslenia
-    private Blob resume;
 
-    public Game(int id, String name, String type, int price, Blob image, Blob resume) {
+    public Game(int id, String name, String type, int price, Blob image) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.price = price;
         this.image = image;
-        this.resume = resume;
     }
 
     public int getId() {
@@ -60,11 +58,4 @@ public class Game {
         this.image = image;
     }
 
-    public Blob getResume() {
-        return resume;
-    }
-
-    public void setResume(Blob resume) {
-        this.resume = resume;
-    }
 }
