@@ -15,6 +15,15 @@ public class Games4UApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(Games4UApplication.class, args);
+
+        // Creating a new database
+        // SQLiteDataBase.createNewDatabase("testowa_bazka");
+
+        // Connection to database
+        SQLiteDataBase.connect();
+
+        // Creating a new table
+        // SQLiteDataBase.createNewTable();
     }
 
     @RequestMapping("/")
