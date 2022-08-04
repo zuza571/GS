@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SQLiteDataBase {
 
@@ -91,22 +93,26 @@ public class SQLiteDataBase {
             pstmt.setString(2, name);
             pstmt.setString(3, type);
             pstmt.setInt(4, price);
-            byte[] fileContent = new byte[(int) file.length()];
-            FileInputStream fis = null;
-            try {
-                fis = new FileInputStream(file);
-                fis.read(fileContent);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                if (fis != null) {
-                    fis.close();
-                }
-            }
-            pstmt.setBytes(5, fileContent);
+
+            // -------------------------
+            // inserting image to database
+            // nie wiem czy dziala
+            FileInputStream fis = new FileInputStream(file);
+            byte [] image = new byte[fis.available()];
+            fis.read(image);
+            pstmt.setBinaryStream(5, fis);
+
+
+            System.out.println("Item has been added to database.");
+
+            // -------------------------
+
             pstmt.executeUpdate();
-        } catch (SQLException | IOException e) {
+        } catch (SQLException | FileNotFoundException e) {
             System.out.println(e.getMessage());
+            Logger.getLogger(SQLiteDataBase.class.getName()).log(Level.SEVERE, null, e);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
