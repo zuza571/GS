@@ -20,7 +20,7 @@ public class Games4UApplication {
         // SQLiteDataBase.createNewDatabase("testowa_bazka");
 
         // Connection to database
-        SQLiteDataBase.connect();
+        // SQLiteDataBase.connect();
 
         // Creating a new table
         // SQLiteDataBase.createNewTable();
