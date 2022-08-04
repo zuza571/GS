@@ -22,7 +22,7 @@ public class SQLiteDataBase {
         }
     }
 
-    public static void connect() {
+    public static Connection connect() {
         Connection conn = null;
         try {
             // db parameters
@@ -43,6 +43,7 @@ public class SQLiteDataBase {
                 System.out.println(ex.getMessage());
             }
         }
+        return conn;
     }
 
     public static void createNewTable() {
@@ -55,8 +56,7 @@ public class SQLiteDataBase {
                 + " name TEXT NOT NULL, \n"
                 + " type TEXT NOT NULL, \n"
                 + " price INT NOT NULL, \n"
-                + " image BLOB NOT NULL, \n"
-                + " resume BLOB NOT NULL \n"
+                + " image BLOB NOT NULL \n"
                 + ");";
 
         try{
@@ -64,6 +64,23 @@ public class SQLiteDataBase {
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
             System.out.println("Your table has been added");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void insert(int id, String name, String type, int price, Blob image) {
+        String sql = "INSERT INTO games(id, name, type, price, image) VALUES(?,?,?,?,?)";
+
+        try{
+            Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.setString(2, name);
+            pstmt.setString(3, type);
+            pstmt.setInt(4, price);
+            pstmt.setBlob(5, image);
+            pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
