@@ -9,13 +9,16 @@ public class Game {
     private String type;
     private int price;
     private Blob image; // do przemyslenia
+    private int quantity = 1;
 
-    public Game(int id, String name, String type, int price, Blob image) {
+    // public Game(int id, String name, String type, int price, Blob image) {
+    public Game(int id, String name, String type, int price) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.price = price;
         this.image = image;
+        this.quantity = quantity;
     }
 
     public int getId() {
@@ -56,6 +59,14 @@ public class Game {
 
     public void setImage(Blob image) {
         this.image = image;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    private void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
 }
