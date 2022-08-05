@@ -1,16 +1,13 @@
 package com.example.games4u;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import javax.swing.*;
+import java.io.*;
 import java.nio.file.Paths;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SQLiteDataBase {
-
 
     public static void createNewDatabase(String fileName) {
 
@@ -47,15 +44,8 @@ public class SQLiteDataBase {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
         }
+
         return conn;
     }
 
@@ -85,34 +75,48 @@ public class SQLiteDataBase {
 
     public static void insert(int id, String name, String type, int price, File file, Connection conn) {
 
-        String sql = "INSERT INTO games(id, name, type, price, image) VALUES(?,?,?,?,?)";
+        String sql = "INSERT or REPLACE INTO games(id, name, type, price, image) VALUES(?,?,?,?,?)";
 
-        try{
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
             pstmt.setInt(1, id);
             pstmt.setString(2, name);
             pstmt.setString(3, type);
             pstmt.setInt(4, price);
 
+
             // -------------------------
             // inserting image to database
             // nie wiem czy dziala
-            FileInputStream fis = new FileInputStream(file);
-            byte [] image = new byte[fis.available()];
-            fis.read(image);
-            pstmt.setBinaryStream(5, fis);
 
+            byte[] image = null;
+
+            try {
+                FileInputStream fis = new FileInputStream(file);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                byte[] buf = new byte[1024];
+
+                for (int i; (i = fis.read(buf)) !=-1;){
+                    baos.write(buf,0,i);
+                }
+
+                image = baos.toByteArray();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+
+            pstmt.setBytes(5,image);
+
+            pstmt.executeUpdate();
 
             System.out.println("Item has been added to database.");
 
             // -------------------------
 
             pstmt.executeUpdate();
-        } catch (SQLException | FileNotFoundException e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
             Logger.getLogger(SQLiteDataBase.class.getName()).log(Level.SEVERE, null, e);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }

@@ -23,24 +23,22 @@ import java.sql.Connection;
 @EnableAsync
 public class Games4UApplication {
 
-    public static void main(String[] args) throws MalformedURLException {
+    public static void main(String[] args) {
         SpringApplication.run(Games4UApplication.class, args);
 
         // Creating a new database
-        SQLiteDataBase.createNewDatabase("Games4UDataBase");
+        // SQLiteDataBase.createNewDatabase("Games4UDataBase");
 
         // Connection to database
         Connection conn = SQLiteDataBase.connect();
 
         // Creating a new table
-        SQLiteDataBase.createNewTable();
+        // SQLiteDataBase.createNewTable();
 
-        File file = new File("https://drive.google.com/file/d/1yD-dR_3c63rOfESLPPQwfi3sZb7Y0NUQ/view?usp=sharing");
-
-        //String url = Paths.get("").toAbsolutePath().toString() + "\\src\\main\\resources\\static\\images\\cyberpunk.jpg";
-        //File file = new File(url);
-
-        SQLiteDataBase.insert(1, "Cyberpunk 2077", "RPG", 150, file, conn);
+        // Addiing new row in DB
+        // String url = Paths.get("").toAbsolutePath().toString() + "\\src\\main\\resources\\static\\images\\gta5.jpg";
+        // File file = new File(url);
+        // SQLiteDataBase.insert(2, "Grand Theft Auto V", "Sandbox", 120, file, conn);
     }
 
     @RequestMapping("/")
