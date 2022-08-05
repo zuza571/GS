@@ -23,4 +23,5 @@ $().ready(function() {
        //let box = document.getElementsByClassName("box");
        $(this).parent().parent().parent().fadeOut();
     });
+
 });
