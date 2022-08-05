@@ -4,6 +4,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,6 +20,7 @@ import java.sql.Connection;
 
 @SpringBootApplication
 @Controller
+@EnableAsync
 public class Games4UApplication {
 
     public static void main(String[] args) throws MalformedURLException {
@@ -43,8 +45,8 @@ public class Games4UApplication {
 
     @RequestMapping("/")
     public String homePage(Model model){
-        // Game g1 = new Game(1, "Grand Theft Auto V", "Sandbox", 100);
-        // model.addAttribute("g1", g1);
+        Game g1 = new Game(1, "Grand Theft Auto V", "Sandbox", 100);
+        model.addAttribute("g1", g1);
         return "index.html";
     }
 
