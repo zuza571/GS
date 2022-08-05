@@ -9,6 +9,11 @@
     <link href="../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" th:src="@{../javascript/script.js}"></script>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -47,6 +52,7 @@
     <h1>Shopping Cart</h1>
     <div class="project">
         <div class="shop">
+            <!-- trzeba dodac id, zeby sie odroznialo do usuwania -->
             <div class="box">
                 <!-- sample product -->
                 <!--
@@ -56,14 +62,23 @@
                     <!-- nazwa, zdjecie i cena z bazy danych !!! -->
                     <h3 th:text="${g1.name}"></h3>
                     <h4 th:text="'Price: ' + ${g1.price} + ' PLN'"></h4>
-                    <div class="quantity-area">
-                        <div class="btn-quantity">+</div>
-                        <div class="count">1</div>
-                        <div class="btn-quantity">-</div>
+
+                    <!-- amount of products -->
+                    <div class="amount">
+                        <a> <!-- th:href="@{/cart/decrease/{index}(index=${g1.id})}"> -->
+                            <button type="button" class="minus">-</button>
+                        </a>
+
+                        <input id="amount-input" th:type="text" th:value="1"/>
+
+                        <a> <!-- th:href="@{/cart/increase/{index}(index=${g1.id})}"> -->
+                            <button type="button" class="plus">+</button>
+                        </a>
                     </div>
+
                     <p class="btn-area">
                         <i aria-hidden="true" class="fa fa-trash"></i>
-                        <span class="btn2">Remove</span>
+                        <span class="btn2" id="remove">Remove</span>
                     </p>
                 </div>
             </div>

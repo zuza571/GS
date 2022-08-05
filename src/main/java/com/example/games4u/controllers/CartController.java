@@ -20,16 +20,15 @@ public class CartController {
     }
 
     // mapping for buttons
-    @GetMapping ("/increase/{itemIndex}")
+    @GetMapping ("/cart/increase/{itemIndex}")
     public String increaseItemsInCart (@PathVariable Integer itemIndex) {
         CartService.increaseItem(itemIndex);
         return "redirect:/cart/";
     }
 
-    @GetMapping ("/decrease/{itemIndex}")
+    @GetMapping ("/cart/decrease/{itemIndex}")
     public String decreaseItemsInCart (@PathVariable Integer itemIndex) {
         CartService.decreaseItem(itemIndex);
         return "redirect:/cart/";
     }
-
 }

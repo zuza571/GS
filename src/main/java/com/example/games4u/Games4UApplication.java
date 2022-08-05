@@ -35,7 +35,7 @@ public class Games4UApplication {
         // Creating a new table
         // SQLiteDataBase.createNewTable();
 
-        // Addiing new row in DB
+        // Adding a new row in DB
         // String url = Paths.get("").toAbsolutePath().toString() + "\\src\\main\\resources\\static\\images\\gta5.jpg";
         // File file = new File(url);
         // SQLiteDataBase.insert(2, "Grand Theft Auto V", "Sandbox", 120, file, conn);

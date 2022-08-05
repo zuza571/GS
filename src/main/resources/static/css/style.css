@@ -28,22 +28,8 @@ body {
     display: flex;
     margin-top: 20px;
 }
-.project a {
-    background-color: #020202;
-    color: #fff;
-    text-decoration: none;
-    display: block;
-    text-align: center;
-    height: 40px;
-    line-height: 40px;
-    font-weight: 900;
-}
 .project i {
     margin-right: 15px;
-}
-.project a:hover {
-    background-color: rgba(2, 2, 2, 0.5);
-    color: #fff;
 }
 .shop {
     flex: 75%;
@@ -78,6 +64,52 @@ body {
 .content h4 {
     margin-bottom: 50px;
 }
+.amount {
+    width: 15%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    right: 31px;
+    top: 60px;
+    background-color: white;
+}
+.amount a {
+    background-color: white;
+    border-radius: 8px;
+    border: 0;
+}
+.minus, .plus {
+    width: 35px;
+    height: 35px;
+    background-color:lightgray;
+    border: 0;
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+a:hover, a:hover .minus, a:hover .plus {
+    background-color: rgba(2, 2, 2, 0.5);
+    color: white;
+    font-weight: 600;
+}
+.amount input {
+    height:35px;
+    width: 35px;
+    font-size: 20px;
+    border: 0;
+    text-align: center;
+    font-weight: 900;
+}
+.amount input:focus {
+    outline: none;
+}
 .type {
     color: rgba(23, 23, 23, 0.65);
 }
@@ -86,36 +118,6 @@ body {
     right: 20px;
     bottom: 70px;
     position: absolute;
-}
-.quantity-area {
-    width: 15%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    right: 31px;
-    top: 60px;
-}
-.btn-quantity {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background-color: rgba(36, 36, 36, 0.16);
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 20px;
-    font-weight: 600;
-    cursor: pointer;
-}
-.btn-quantity:hover {
-    background-color: rgba(2, 2, 2, 0.5);
-    color: #fff;
-    font-weight: 600;
-}
-.count {
-    font-size: 20px;
-    font-weight: 900;
 }
 .btn-area {
     position: absolute;
@@ -205,6 +207,21 @@ body {
 .contact-box:hover {
     border: none;
     transform: scale(1.01);
+}
+.back-to-cart {
+    background-color: #020202;
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    font-weight: 600;
+}
+.back-to-cart:hover {
+    background-color: rgba(2, 2, 2, 0.5);
+    color: #fff;
+    font-weight: 600;
 }
 
 @media screen and (max-width: 700px) {
