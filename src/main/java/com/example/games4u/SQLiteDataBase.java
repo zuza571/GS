@@ -2,6 +2,7 @@ package com.example.games4u;
 
 import org.slf4j.impl.StaticMarkerBinder;
 
+import javax.sql.rowset.serial.SerialBlob;
 import javax.swing.*;
 import java.io.*;
 import java.nio.file.Paths;
@@ -140,7 +141,9 @@ public class SQLiteDataBase {
                 game.setName(rs.getString("name"));
                 game.setType(rs.getString("type"));
                 game.setPrice(rs.getInt("price"));
-                // game.setImage(rs.getBlob("image"));
+                byte[] blob = rs.getBytes("image");
+                Blob image = new SerialBlob(blob);
+                game.setImage(image);
                 games.add(game);
             }
         } catch (SQLException e) {
