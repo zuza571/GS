@@ -1,9 +1,13 @@
 package com.example.games4u;
 
+import org.slf4j.impl.StaticMarkerBinder;
+
 import javax.swing.*;
 import java.io.*;
 import java.nio.file.Paths;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -118,5 +122,31 @@ public class SQLiteDataBase {
             System.out.println(e.getMessage());
             Logger.getLogger(SQLiteDataBase.class.getName()).log(Level.SEVERE, null, e);
         }
+    }
+
+    public static List<Game> selectAll(Connection conn) {
+
+        List<Game> games = new ArrayList<>();
+
+        String query = "SELECT * FROM games";
+
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                Game game = new Game();
+                game.setId(rs.getInt("id"));
+                game.setName(rs.getString("name"));
+                game.setType(rs.getString("type"));
+                game.setPrice(rs.getInt("price"));
+                // game.setImage(rs.getBlob("image"));
+                games.add(game);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return games;
     }
 }

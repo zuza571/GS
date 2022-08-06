@@ -21,6 +21,8 @@ public class Game {
         this.quantity = quantity;
     }
 
+    public Game() {}
+
     public int getId() {
         return id;
     }

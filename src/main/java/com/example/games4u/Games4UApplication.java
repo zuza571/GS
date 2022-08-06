@@ -17,6 +17,8 @@ import java.net.MalformedURLException;
 import java.nio.file.Paths;
 import java.sql.Blob;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 @Controller
@@ -30,7 +32,7 @@ public class Games4UApplication {
         // SQLiteDataBase.createNewDatabase("Games4UDataBase");
 
         // Connection to database
-        Connection conn = SQLiteDataBase.connect();
+        // Connection conn = SQLiteDataBase.connect();
 
         // Creating a new table
         // SQLiteDataBase.createNewTable();
@@ -39,12 +41,15 @@ public class Games4UApplication {
         // String url = Paths.get("").toAbsolutePath().toString() + "\\src\\main\\resources\\static\\images\\gta5.jpg";
         // File file = new File(url);
         // SQLiteDataBase.insert(2, "Grand Theft Auto V", "Sandbox", 120, file, conn);
+
     }
 
     @RequestMapping("/")
     public String homePage(Model model){
-        Game g1 = new Game(1, "Grand Theft Auto V", "Sandbox", 100);
-        model.addAttribute("g1", g1);
+        List<Game> games;
+        Connection conn = SQLiteDataBase.connect();
+        games = SQLiteDataBase.selectAll(conn);
+        model.addAttribute("games", games);
         return "index.html";
     }
 
