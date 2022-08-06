@@ -49,7 +49,7 @@ body {
     transform: scale(1.01);
 }
 .box img {
-    width: 300px;
+    width: 200px;
     height: 200px;
     object-fit: cover;
 }
@@ -70,7 +70,7 @@ body {
     justify-content: space-between;
     align-items: center;
     position: absolute;
-    right: 31px;
+    right: 57px;
     top: 60px;
     background-color: white;
 }
@@ -89,7 +89,6 @@ body {
     font-weight: 600;
     cursor: pointer;
     border-radius: 8px;
-
     justify-content: center;
     text-align: center;
     align-items: center;

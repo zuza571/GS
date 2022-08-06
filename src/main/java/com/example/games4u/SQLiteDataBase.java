@@ -1,8 +1,8 @@
 package com.example.games4u;
 
-import org.slf4j.impl.StaticMarkerBinder;
-
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.file.Paths;
 import java.sql.*;
@@ -31,8 +31,6 @@ public class SQLiteDataBase {
             System.out.println(e.getMessage());
         }
     }
-
-
 
     public static Connection connect() {
         Connection conn = null;
@@ -88,11 +86,8 @@ public class SQLiteDataBase {
             pstmt.setString(3, type);
             pstmt.setInt(4, price);
 
-
-            // -------------------------
+            // =========================================================
             // inserting image to database
-            // nie wiem czy dziala
-
             byte[] image = null;
 
             try {
@@ -110,12 +105,7 @@ public class SQLiteDataBase {
             }
 
             pstmt.setBytes(5,image);
-
-            pstmt.executeUpdate();
-
-            System.out.println("Item has been added to database.");
-
-            // -------------------------
+            // ==========================================================
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -140,10 +130,22 @@ public class SQLiteDataBase {
                 game.setName(rs.getString("name"));
                 game.setType(rs.getString("type"));
                 game.setPrice(rs.getInt("price"));
-                // game.setImage(rs.getBlob("image"));
+
+                // ============================================
+                // converting from byte[] to BufferedImage
+                byte[] blob = rs.getBytes("image");
+                ByteArrayInputStream bis = new ByteArrayInputStream(blob);
+                BufferedImage image = ImageIO.read(bis);
+
+                // saving image to jpg file with its id name -> for html
+                ImageIO.write(image, "jpg", new File("src/main/resources/static/images-html/" +
+                        rs.getInt("id") + ".jpg"));
+                game.setImage(image);
+                // ============================================
+
                 games.add(game);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
 

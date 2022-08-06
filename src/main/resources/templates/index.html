@@ -49,11 +49,12 @@
        </div>
    </nav>
 
-   <th:block th:each="game : ${games}">
-       <div  class="home-img">
+   <div class="home-img">
+       <div th:each="game : ${games}">
            <div class="wrapper">
                <div class="shop">
                    <div class="box">
+                       <img th:src="@{${'../images-html/' + game.id + '.jpg'}}">
                        <div class="content">
                            <h2 th:text="${game.name}"></h2>
                            <h4 class="type" th:text="${game.type}"></h4>
@@ -67,6 +68,6 @@
                </div>
            </div>
        </div>
-   </th:block>
+   </div>
 </body>
 </html>

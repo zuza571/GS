@@ -54,10 +54,7 @@
         <div class="shop">
             <!-- trzeba dodac id, zeby sie odroznialo do usuwania -->
             <div class="box" th:each="game: ${games}">
-                <!-- sample product -->
-                <!--
-                <img src="1.jpg">
-                -->
+                <img src="../images/cp2077.jpg">
                 <div class="content">
                     <!-- nazwa, zdjecie i cena z bazy danych !!! -->
                     <h3 th:text="${game.name}"></h3>

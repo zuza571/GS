@@ -1,17 +1,16 @@
 package com.example.games4u;
 
-import java.awt.*;
-import java.sql.Blob;
+import java.awt.image.BufferedImage;
 
 public class Game {
     private int id;
     private String name;
     private String type;
     private int price;
-    private Blob image; // do przemyslenia
+    private BufferedImage image;
     private int quantity = 1;
 
-    // public Game(int id, String name, String type, int price, Blob image) {
+    //public Game(int id, String name, String type, int price, Blob image) {
     public Game(int id, String name, String type, int price) {
         this.id = id;
         this.name = name;
@@ -55,11 +54,11 @@ public class Game {
         this.price = price;
     }
 
-    public Blob getImage() {
+    public BufferedImage getImage() {
         return image;
     }
 
-    public void setImage(Blob image) {
+    public void setImage(BufferedImage image) {
         this.image = image;
     }
 
