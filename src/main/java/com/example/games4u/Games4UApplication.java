@@ -17,6 +17,8 @@ import java.net.MalformedURLException;
 import java.nio.file.Paths;
 import java.sql.Blob;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,15 +47,12 @@ public class Games4UApplication {
     }
 
     @RequestMapping("/")
-    public String homePage(Model model){
+    public String homePage(Model model) {
         List<Game> games;
         Connection conn = SQLiteDataBase.connect();
         games = SQLiteDataBase.selectAll(conn);
         model.addAttribute("games", games);
         return "index.html";
     }
-
-
-
 
 }
