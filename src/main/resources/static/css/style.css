@@ -51,7 +51,7 @@ body {
 .box img {
     width: 200px;
     height: 200px;
-    object-fit: contain;
+    object-fit: cover;
 }
 .content{
     padding: 20px;
@@ -65,19 +65,13 @@ body {
     margin-bottom: 50px;
 }
 .amount {
-    width: 15%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     position: absolute;
-    right: 57px;
+    right: 8px;
     top: 60px;
+    padding: 5px 25px;
     background-color: white;
-}
-.amount a {
-    background-color: white;
-    border-radius: 8px;
-    border: 0;
 }
 .minus, .plus {
     width: 35px;
@@ -93,12 +87,12 @@ body {
     text-align: center;
     align-items: center;
 }
-a:hover, a:hover .minus, a:hover .plus {
+.minus:hover, .plus:hover {
     background-color: rgba(2, 2, 2, 0.5);
     color: white;
     font-weight: 600;
 }
-.amount input {
+.amount-input {
     height:35px;
     width: 35px;
     font-size: 20px;
@@ -106,7 +100,7 @@ a:hover, a:hover .minus, a:hover .plus {
     text-align: center;
     font-weight: 900;
 }
-.amount input:focus {
+.amount-input:focus {
     outline: none;
 }
 .type {
@@ -230,7 +224,7 @@ a:hover, a:hover .minus, a:hover .plus {
     .content h4 {
         margin-bottom: 20px;
     }
-    .btn2 {
+    .remove-button, .plus, .minus, .add-to-cart {
         display: none;
     }
     .box {
