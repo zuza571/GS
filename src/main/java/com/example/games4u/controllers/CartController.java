@@ -1,9 +1,13 @@
 package com.example.games4u.controllers;
 
 import com.example.games4u.Game;
+import com.example.games4u.Games4UApplication;
+import com.example.games4u.SQLiteDataBase;
 import com.example.games4u.services.CartService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.concurrent.SettableListenableFuture;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,14 +20,14 @@ public class CartController {
 
     // endpoint
     @RequestMapping("/cart")
-    public String cartPage(Model model){
-        Game g1 = new Game(2, "Grand Theft Auto V", "Sandbox", 100);
-        Game g2 = new Game (6, "Witcher 3", "RPG", 100);
-
+    public String cartPage(Model model) {
+        List<Integer> cartId;
         List<Game> games = new ArrayList<>();
-        games.add(g1);
-        games.add(g2);
-
+        cartId = SQLiteDataBase.takeAllCartId();
+        for(int i:cartId) {
+            Game game = SQLiteDataBase.sellectById(i);
+            games.add(game);
+        }
         model.addAttribute("games", games);
         return "cart.html";
     }

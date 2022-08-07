@@ -65,7 +65,7 @@ public class SQLiteDataBase {
                 + " image BLOB NOT NULL \n"
                 + ");";
 
-        try{
+        try {
             Connection conn = DriverManager.getConnection(url);
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
@@ -95,8 +95,8 @@ public class SQLiteDataBase {
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 byte[] buf = new byte[1024];
 
-                for (int i; (i = fis.read(buf)) !=-1;){
-                    baos.write(buf,0,i);
+                for (int i; (i = fis.read(buf)) != -1; ) {
+                    baos.write(buf, 0, i);
                 }
 
                 image = baos.toByteArray();
@@ -104,7 +104,8 @@ public class SQLiteDataBase {
                 JOptionPane.showMessageDialog(null, e);
             }
 
-            pstmt.setBytes(5,image);
+            pstmt.setBytes(5, image);
+            pstmt.executeUpdate();
             // ==========================================================
 
             pstmt.executeUpdate();
@@ -150,5 +151,72 @@ public class SQLiteDataBase {
         }
 
         return games;
+    }
+
+    public static Game sellectById(int id) {
+        Connection conn = SQLiteDataBase.connect();
+        Game game = new Game();
+
+        String query = "SELECT * FROM games WHERE id = " + "\"" + id + "\"";
+
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            game.setId(rs.getInt(1));
+            game.setName(rs.getString(2));
+            game.setType(rs.getString(3));
+            game.setPrice(rs.getInt(4));
+
+            byte[] blob = rs.getBytes("image");
+            ByteArrayInputStream bis = new ByteArrayInputStream(blob);
+            BufferedImage image = ImageIO.read(bis);
+            game.setImage(image);
+
+        } catch (SQLException | IOException throwables) {
+            throwables.printStackTrace();
+        }
+        return game;
+    }
+
+    public static void insertCartId(int id) {
+        Connection conn = SQLiteDataBase.connect();
+
+        String sql = "INSERT or REPLACE INTO cart_id(id) VALUES(?)";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public static void removeAllCartId() {
+        Connection conn = SQLiteDataBase.connect();
+
+        String sql = "DELETE FROM cart_id";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public static List<Integer> takeAllCartId() {
+        Connection conn = SQLiteDataBase.connect();
+        List<Integer> cartId = new ArrayList<>();
+        String sql = "SELECT * FROM cart_id";
+
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                cartId.add(rs.getInt(1));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return cartId;
     }
 }

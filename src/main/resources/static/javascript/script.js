@@ -4,12 +4,20 @@ $().ready(function() {
     let subtotal = 0;
 
     $('.add-to-cart').click(function () {
-        const id = $(this).data('id');
-        alert("id gry do koszyka: " + id + ", tytuł: ");
-        // zrobic funkcje - jakies powiazania z baza danych
-        const title = getTitle(id);
-        const price = getPrice(id);
-        const image = getImage(id);
+        let id = $(this).data('id');
+        let add_buttons = document.querySelectorAll(".btn-area")
+        for (const btn of add_buttons){
+            btn.addEventListener("click", event => {
+                let url = `http://localhost:8080/add/cart/${id}/`
+                console.log(url)
+                fetch(url)
+                    .then(response => console.log("Success") )
+                    .catch(error => {
+                        console.log(error);
+                    });
+
+            })
+        }
     });
 
 
