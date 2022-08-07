@@ -1,27 +1,31 @@
 
 $().ready(function() {
     $('.minus').click(function () {
-        let input = parseInt($("#amount-input").val());
-        let count = input - 1;
-        count = count < 1 ? 1 : count;
+        var parent = $(this).closest(".amount");
+        var input = parseInt(parent.find(".amount-input").val());
+        console.log(input);
+        var count = input - 1;
+        console.log(count);
 
-        document.querySelector('input').value = count;
-
-        return false;
+        // to zle dziala, ale w konsoli widac, ze dobrze zczytuje oba
+        // wpisuje w zle miejsce
+        //input['value'] = count;
+        document.querySelector("input").value = count;
     });
 
     $('.plus').click(function () {
-        let input = parseInt($("#amount-input").val());
-        let count = input + 1;
+        var parent = $(this).closest(".amount");
+        var input = parseInt(parent.find(".amount-input").val());
+        console.log(input);
+        var count = input + 1;
+        console.log(count);
 
-        document.querySelector('input').value = count;
-
-        return false;
+        //input['value'] = count;
+        document.querySelector("input").value = count;
     });
 
     $('#remove').click(function () {
-       //let box = document.getElementsByClassName("box");
-       $(this).parent().parent().parent().fadeOut();
+       $(this).parent().parent().parent().remove();
     });
 
 });

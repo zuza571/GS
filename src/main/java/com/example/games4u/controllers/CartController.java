@@ -17,8 +17,8 @@ public class CartController {
     // endpoint
     @RequestMapping("/cart")
     public String cartPage(Model model){
-        Game g1 = new Game(1, "Grand Theft Auto V", "Sandbox", 100);
-        Game g2 = new Game (2, "Witcher 3", "RPG", 100);
+        Game g1 = new Game(2, "Grand Theft Auto V", "Sandbox", 100);
+        Game g2 = new Game (6, "Witcher 3", "RPG", 100);
 
         List<Game> games = new ArrayList<>();
         games.add(g1);

@@ -54,7 +54,7 @@
         <div class="shop">
             <!-- trzeba dodac id, zeby sie odroznialo do usuwania -->
             <div class="box" th:each="game: ${games}">
-                <img src="../images/cp2077.jpg">
+                <img th:src="@{${'../images-html/' + game.id + '.jpg'}}">
                 <div class="content">
                     <!-- nazwa, zdjecie i cena z bazy danych !!! -->
                     <h3 th:text="${game.name}"></h3>
@@ -66,7 +66,7 @@
                             <button type="button" class="minus">-</button>
                         </a>
 
-                        <input id="amount-input" th:type="text" th:value="1"/>
+                        <input class="amount-input" th:type="text" th:value="1" th:min="1"/>
 
                         <a> <!-- th:href="@{/cart/increase/{index}(index=${g1.id})}"> -->
                             <button type="button" class="plus">+</button>
