@@ -185,7 +185,7 @@ public class SQLiteDataBase {
         return game;
     }
 
-    public static void insertCartId(int id) {
+    public static void insertCartById(int id) {
         Connection conn = SQLiteDataBase.connect();
 
         String sql = "INSERT or REPLACE INTO cart_id(id) VALUES(?)";

@@ -21,10 +21,10 @@ public class CartController {
     // endpoint
     @RequestMapping("/cart")
     public String cartPage(Model model) {
-        List<Integer> cartId;
+        List<Integer> cartIds;
         List<Game> games = new ArrayList<>();
-        cartId = SQLiteDataBase.takeAllCartId();
-        for(int i:cartId) {
+        cartIds = SQLiteDataBase.takeAllCartId();
+        for(int i:cartIds) {
             Game game = SQLiteDataBase.sellectById(i);
             games.add(game);
         }
