@@ -4,7 +4,8 @@ $().ready(function() {
     let subtotal = 0;
 
     $('.add-to-cart').click(function () {
-        let id = $(this).data('id');
+        let id = 0;
+        id = $(this).data('id');
         let add_buttons = document.querySelectorAll(".btn-area")
         for (const btn of add_buttons){
             btn.addEventListener("click", event => {
@@ -20,47 +21,23 @@ $().ready(function() {
         }
     });
 
-
-    $('.minus').click(function () {
-        /*
-        var parent = $(this).parent().parent();
-        var input = parseInt(parent.find(".amount-input").val());
-        var count = input - 1;
-        //$(this).parent().parent().closest("input").value = count;
-        parent.closest("input.amount-input").value = count;
-         */
-
-        // + before $ changes value form String to int
-        if ($(this).next().val() > 1) {
-            let quantity = $(this).next().val(+$(this).next().val() - 1);
-
-            quantity = quantity.val();
-            let subtotal = document.querySelector("#items-price").textContent = (quantity * 100).toString() + ' PLN';
-            let total = document.querySelector("#items-price-total").textContent = ((quantity * 100) + 15).toString() + ' PLN';
-            console.log(quantity);
-            console.log(subtotal + ", " + total);
+    function change_value(factor){
+        return function(){
+            let parent = $(this).parent();
+            let input = parseInt(parent.find(".amount-input").val());
+            let count;
+            if (factor===-1 && input === 1) {
+                count = input;
+            } else {
+                count = input + factor;
+            }
+            parent.find("input.amount-input").val(count);
         }
+    }
 
-    });
+    $('.minus').click(change_value(-1));
+    $('.plus').click(change_value(1));
 
-    $('.plus').click(function () {
-        /*
-        var parent = $(this).parent().parent();
-        var input = parseInt(parent.find(".amount-input").val());
-        var count = input + 1;
-        parent.closest("input.amount-input").value = count;
-        */
-
-        let quantity = $(this).prev().val(+$(this).prev().val() + 1);
-
-        quantity = quantity.val();
-        let subtotal = document.querySelector("#items-price").textContent = (quantity * 100).toString() + ' PLN';
-        let total = document.querySelector("#items-price-total").textContent = ((quantity * 100) + 15).toString() + ' PLN';
-        console.log(quantity)
-        console.log(subtotal + ", " + total);
-
-
-    });
 
     $('.remove-button').click(function () {
         $(this).parent().parent().parent().remove();
