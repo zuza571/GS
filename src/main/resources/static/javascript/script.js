@@ -4,6 +4,9 @@ $().ready(function() {
     let subtotal = 0;
     let listIds = [];
 
+    // jak miec dostep do rozmiaru listy????
+    //$('#cartCount').textContent =
+
     $('.add-to-cart').click(function () {
         let id = $(this).data('id');
         let add_buttons = document.querySelectorAll(".btn-area")
@@ -40,10 +43,13 @@ $().ready(function() {
                         subtotal += price;
                     }
                 }
+                console.log("subtotal: " + subtotal)
             })
         }
     });
-    // document.getElementById("#items-price").textContent=subtotal.toString() + " PLN";
+
+    //document.getElementById("#items-price").textContent=subtotal.toString() + " PLN";
+    //document.jQuery("#items-price").load('cart.html').text(subtotal.toString() + " PLN")
 
     function change_value(factor){
         return function(){

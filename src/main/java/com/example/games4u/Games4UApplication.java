@@ -10,13 +10,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
 @Controller
 @EnableAsync
 public class Games4UApplication {
-
 
     public static void main(String[] args) {
         SpringApplication.run(Games4UApplication.class, args);
@@ -45,6 +45,16 @@ public class Games4UApplication {
         Connection conn = SQLiteDataBase.connect();
         games = SQLiteDataBase.selectAll(conn);
         model.addAttribute("games", games);
+
+        List<Game> gamesIds = new ArrayList<>();
+        List<Integer> cartIds;
+        cartIds = SQLiteDataBase.takeAllCartId();
+        for(int i:cartIds) {
+            Game game = SQLiteDataBase.sellectById(i);
+            gamesIds.add(game);
+        }
+        model.addAttribute("gamesIds", gamesIds);
+
         return "index.html";
     }
 

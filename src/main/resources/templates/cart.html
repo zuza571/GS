@@ -39,6 +39,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/cart">
                             <i class="fa fa-shopping-basket"></i>
+                            <span class="badge badge-warning" id="cartCount" th:text="${#lists.size(gamesIds)}"></span>
                             Cart
                         </a>
                     </li>
@@ -50,11 +51,17 @@
 
 <div class="wrapper">
     <h1>Shopping Cart</h1>
+    <div class="empty-cart" th:if="${#lists.isEmpty(gamesIds)}">
+        <span>
+            <h2>Your cart is empty!</h2>
+            <h4>Continue shopping</h4>
+        </span>
+    </div>
     <div class="project">
         <div class="shop">
             <!-- trzeba dodac id, zeby sie odroznialo do usuwania + sumowania ceny
             warunek if game.id = id -->
-            <div class="box" th:each="game: ${games}">
+            <div class="box" th:each="game: ${gamesIds}">
                 <img th:src="@{${'../images-html/' + game.id + '.jpg'}}">
                 <div class="content">
                     <h3 th:text="${game.name}"></h3>
@@ -74,13 +81,16 @@
                 </div>
             </div>
         </div>
-        <div class="right-bar">
+
+        <!-- to niech sie pokazuje gdy koszyk nie jest pusty -->
+        <div class="right-bar" th:if="${not #lists.isEmpty(gamesIds)}">
             <p>
                 <span>Subtotal</span>
                 <!-- cena musi byc sumowana w pętli  i reagowac na + i -, REMOVE -->
-                <span id="items-price" th:text="' PLN'"></span>
+                <span id="items-price" th:text="' '"></span>
             </p>
             <hr>
+
             <p>
                 <span>Shipping</span>
                 <span id="shipping" th:text="'15 PLN'"></span>
@@ -89,7 +99,7 @@
             <p>
                 <span>Total</span>
                 <!-- tu tez sumowac cene ale jakos trzeba chyba parsowac -->
-                <span id="items-price-total" th:text="' PLN'"></span>
+                <span id="items-price-total" th:text="' '"></span>
             </p>
             <a href="/checkout">
                 <i class="fa fa-shopping-cart"></i>
