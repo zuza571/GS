@@ -3,6 +3,7 @@
 $().ready(function() {
     let subtotal = 0;
     let listIds = [];
+    let removeIds = [];
 
     $('.add-to-cart').click(function () {
         let id = $(this).data('id');
@@ -59,7 +60,39 @@ $().ready(function() {
 
 
     $('.remove-button').click(function () {
-        $(this).parent().parent().parent().remove();
+        let id = $(this).data('id');
+        let remove_button = document.querySelectorAll(".btn-area")
+        for (const btn of remove_button){
+            btn.addEventListener("click", event => {
+                if (removeIds.length === 0) {
+                    removeIds.push(id)
+                    let url = `http://localhost:8080/remove/cart/${id}/`
+                    console.log(url)
+                    fetch(url)
+                        .then(response => console.log("Success"))
+                        .catch(error => {
+                            console.log(error);
+                        });
+                } else {
+                    let removeHelper = 0;
+                    for (let i = 0; i < removeIds.length; i++) {
+                        if (removeIds[i] === id) {
+                            removeHelper = 1;
+                        }
+                    }
+                    if (removeHelper === 0) {
+                        removeIds.push(id)
+                        let url = `http://localhost:8080/add/cart/${id}/`
+                        console.log(url)
+                        fetch(url)
+                            .then(response => console.log("Success"))
+                            .catch(error => {
+                                console.log(error);
+                            });
+                    }
+                }
+            })
+        }
+        $(this).parent().parent().parent().remove()
     });
-
 });

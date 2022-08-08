@@ -245,4 +245,21 @@ public class SQLiteDataBase {
 
         return cartId;
     }
+
+    public static void removeByCartId(int id) {
+        Connection conn = SQLiteDataBase.connect();
+
+        String sql = "DELETE FROM cart_id WHERE id = " + "\"" + id + "\"";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        try{
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }
