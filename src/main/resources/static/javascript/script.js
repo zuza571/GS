@@ -3,12 +3,11 @@
 $().ready(function() {
     let subtotal = 0;
     let listIds = [];
-    let removeIds = [];
 
     $('.add-to-cart').click(function () {
         let id = $(this).data('id');
         let add_buttons = document.querySelectorAll(".btn-area")
-        for (const btn of add_buttons){
+        for (const btn of add_buttons) {
             btn.addEventListener("click", event => {
                 if (listIds.length === 0) {
                     listIds.push(id)
@@ -19,6 +18,8 @@ $().ready(function() {
                         .catch(error => {
                             console.log(error);
                         });
+                    let price = $(this).data('price');
+                    subtotal += price;
                 } else {
                     let helper = 0;
                     for (let i = 0; i < listIds.length; i++) {
@@ -35,11 +36,14 @@ $().ready(function() {
                             .catch(error => {
                                 console.log(error);
                             });
+                        let price = $(this).data('price');
+                        subtotal += price;
                     }
                 }
             })
         }
     });
+    // document.getElementById("#items-price").textContent=subtotal.toString() + " PLN";
 
     function change_value(factor){
         return function(){
@@ -64,8 +68,17 @@ $().ready(function() {
         let remove_button = document.querySelectorAll(".btn-area")
         for (const btn of remove_button){
             btn.addEventListener("click", event => {
-                if (removeIds.length === 0) {
-                    removeIds.push(id)
+                let removeHelper = 0;
+                for (let i = 0; i < listIds.length; i++) {
+                    if (listIds[i] === id) {
+                        removeHelper = 1;
+                    }
+                }
+                if (removeHelper === 0) {
+                    let pos = listIds.indexOf(id)
+                    let price = $(this).data("price")
+                    subtotal -= price
+                    listIds.splice(pos, 1)
                     let url = `http://localhost:8080/remove/cart/${id}/`
                     console.log(url)
                     fetch(url)
@@ -73,26 +86,11 @@ $().ready(function() {
                         .catch(error => {
                             console.log(error);
                         });
-                } else {
-                    let removeHelper = 0;
-                    for (let i = 0; i < removeIds.length; i++) {
-                        if (removeIds[i] === id) {
-                            removeHelper = 1;
-                        }
-                    }
-                    if (removeHelper === 0) {
-                        removeIds.push(id)
-                        let url = `http://localhost:8080/add/cart/${id}/`
-                        console.log(url)
-                        fetch(url)
-                            .then(response => console.log("Success"))
-                            .catch(error => {
-                                console.log(error);
-                            });
-                    }
+                    $(this).parent().parent().parent().remove()
+                    // document.getElementById("#items-price").textContent=subtotal.toString() + " PLN";
                 }
+
             })
         }
-        $(this).parent().parent().parent().remove()
     });
 });

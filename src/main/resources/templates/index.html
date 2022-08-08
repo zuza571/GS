@@ -61,7 +61,7 @@
                            <h3 class="price" th:text="${game.price} + ' PLN'"></h3>
                            <p class="btn-area">
                                <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                               <span class="add-to-cart" th:data-id="${game.id}">Add to cart</span>
+                               <span class="add-to-cart" th:data-id="${game.id}" th:data-price="${game.price}">Add to cart</span>
                            </p>
                        </div>
                    </div>
