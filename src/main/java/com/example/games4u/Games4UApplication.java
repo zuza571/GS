@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
@@ -72,7 +73,7 @@ public class Games4UApplication {
     @RequestMapping("/add/cart/{id}")
     public @ResponseBody ResponseEntity addCart(@PathVariable(value = "id") int id) {
         SQLiteDataBase.insertCartId(id);
-        return ResponseEntity.ok().build();
+        return new ResponseEntity<>("result successful result", HttpStatus.OK);
     }
 
 }
