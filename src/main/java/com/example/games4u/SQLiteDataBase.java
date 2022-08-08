@@ -175,6 +175,13 @@ public class SQLiteDataBase {
         } catch (SQLException | IOException throwables) {
             throwables.printStackTrace();
         }
+
+        try{
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
         return game;
     }
 
@@ -189,6 +196,12 @@ public class SQLiteDataBase {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
+        try{
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public static void removeAllCartId() {
@@ -197,6 +210,12 @@ public class SQLiteDataBase {
         String sql = "DELETE FROM cart_id";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)){
             pstmt.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        try{
+            conn.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -217,6 +236,13 @@ public class SQLiteDataBase {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
+        try{
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
         return cartId;
     }
 }
