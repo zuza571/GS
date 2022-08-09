@@ -16,7 +16,6 @@ public class AboutController {
     // endpoint
     @RequestMapping("/about")
     public String aboutPage(Model model){
-
         List<Game> gamesIds = new ArrayList<>();
         List<Integer> cartIds;
         cartIds = SQLiteDataBase.takeAllCartId();

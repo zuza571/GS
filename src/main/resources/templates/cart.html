@@ -37,7 +37,7 @@
             <form class="navbar-cart">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/cart">
+                        <a class="nav-link" id="cart" href="/cart">
                             <i class="fa fa-shopping-basket"></i>
                             <span class="badge badge-warning" id="cartCount" th:text="${#lists.size(gamesIds)}"></span>
                             Cart
@@ -51,7 +51,7 @@
 
 <div class="wrapper">
     <h1>Shopping Cart</h1>
-    <div class="empty-cart" th:if="${#lists.isEmpty(gamesIds)}">
+    <div class="empty-cart" id="empty-cart">
         <span>
             <h2>Your cart is empty!</h2>
             <h4>Continue shopping</h4>
@@ -69,9 +69,9 @@
 
                     <!-- amount of products -->
                     <div class="amount">
-                        <button type="button" class="minus">-</button>
+                        <button type="button" class="minus" th:data-id="${game.id}">-</button>
                         <input type="text" value="1" class="amount-input"/>
-                        <button type="button" class="plus">+</button>
+                        <button type="button" class="plus" th:data-id="${game.id}">+</button>
                     </div>
 
                     <p class="btn-area">
@@ -81,9 +81,7 @@
                 </div>
             </div>
         </div>
-
-        <!-- to niech sie pokazuje gdy koszyk nie jest pusty -->
-        <div class="right-bar" th:if="${not #lists.isEmpty(gamesIds)}">
+        <div class="right-bar" id="right-bar">
             <p>
                 <span>Subtotal</span>
                 <!-- cena musi byc sumowana w pętli  i reagowac na + i -, REMOVE -->
@@ -107,6 +105,22 @@
             </a>
         </div>
     </div>
+    <!-- after removing the last element showing new content -->
+    <script>
+        $().ready(function () {
+            let boxCount = document.querySelectorAll(".box")
+            if (boxCount.length > 0) {
+                document.getElementById("empty-cart").style.display = "none"
+                document.getElementById("right-bar").style.display = "block"
+
+            } else {
+                document.getElementById("empty-cart").style.display = "block"
+                document.getElementById("right-bar").style.display = "none"
+            }
+
+            //
+        });
+    </script>
 </div>
 
 </body>

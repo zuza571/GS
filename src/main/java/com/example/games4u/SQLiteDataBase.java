@@ -188,10 +188,11 @@ public class SQLiteDataBase {
     public static void insertCartById(int id) {
         Connection conn = SQLiteDataBase.connect();
 
-        String sql = "INSERT or REPLACE INTO cart_id(id) VALUES(?)";
+        String sql = "INSERT or REPLACE INTO cart_id(id, quantity) VALUES(?,?)";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
+            pstmt.setInt(2, 1);
             pstmt.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -252,6 +253,62 @@ public class SQLiteDataBase {
         String sql = "DELETE FROM cart_id WHERE id = " + "\"" + id + "\"";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)){
             pstmt.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        try{
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public static void addQuantity (int id) {
+        Connection conn = SQLiteDataBase.connect();
+
+        String query1 = "SELECT * FROM cart_id WHERE id = " + "\"" + id + "\"";
+        String query2 = "REPLACE INTO cart_id(quantity) VALUES(?)";
+
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query1);
+            int newQuantity = rs.getInt(2)+1;
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query2)){
+                pstmt.setInt(2, newQuantity);
+                pstmt.executeUpdate();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        try{
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public static void substractQuantity(int id) {
+        Connection conn = SQLiteDataBase.connect();
+
+        String query1 = "SELECT * FROM cart_id WHERE id = " + "\"" + id + "\"";
+        String query2 = "REPLACE INTO cart_id(quantity) VALUES(?)";
+
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query1);
+            int newQuantity = rs.getInt(2)-1;
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query2)){
+                pstmt.setInt(2, newQuantity);
+                pstmt.executeUpdate();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

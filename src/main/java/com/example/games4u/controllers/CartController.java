@@ -38,5 +38,19 @@ public class CartController {
         return new ResponseEntity<>("result successful result", HttpStatus.OK);
     }
 
+    @RequestMapping("/add/quantity/{id}")
+    public @ResponseBody ResponseEntity addCartQuantity(@PathVariable(value = "id") int id) {
+        SQLiteDataBase.addQuantity(id);
+        // HTTP 200 code
+        return new ResponseEntity<>("result successful result", HttpStatus.OK);
+    }
+
+    @RequestMapping("/remove/quantity/{id}")
+    public @ResponseBody ResponseEntity substractCartQuantity(@PathVariable(value = "id") int id) {
+        SQLiteDataBase.substractQuantity(id);
+        // HTTP 200 code
+        return new ResponseEntity<>("result successful result", HttpStatus.OK);
+    }
+
 
 }
