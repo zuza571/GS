@@ -306,6 +306,10 @@ public class SQLiteDataBase {
             int oldId = rs.getInt(1);
             int newQuantity = rs.getInt(2)-1;
 
+            if (newQuantity < 1) {
+                newQuantity = 1;
+            }
+
             try (PreparedStatement pstmt = conn.prepareStatement(query2)){
                 pstmt.setInt(1, oldId);
                 pstmt.setInt(2, newQuantity);
