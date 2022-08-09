@@ -18,7 +18,10 @@ $().ready(function() {
             });
 
         // how many items in cart
-        document.getElementById('cartCount').textContent = listIds.length.toString();
+        // reading from dataset (database value) - right after loading the page
+        let count = parseInt(document.getElementById('cartCount').dataset.count)
+        // dataset value + new values added after loading the page
+        document.getElementById('cartCount').textContent = (listIds.length + count).toString()
 
         let price = $(this).data('price');
         subtotal += price;
