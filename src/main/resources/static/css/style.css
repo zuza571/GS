@@ -34,7 +34,7 @@ body {
 .shop {
     flex: 75%;
 }
-.box {
+.box, .cart-box {
     display: flex;
     width: 100%;
     height: 200px;
@@ -44,11 +44,11 @@ body {
     transition: all .6s ease;
     box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
 }
-.box:hover {
+.box:hover, .cart-box:hover {
     border: none;
     transform: scale(1.01);
 }
-.box img {
+.box img, .cart-box img {
     width: 200px;
     height: 200px;
     object-fit: cover;
@@ -253,10 +253,10 @@ body {
     .remove-button, .plus, .minus, .add-to-cart {
         display: none;
     }
-    .box {
+    .box, .cart-box {
         height: 150px;
     }
-    .box img {
+    .box img, .cart-box img {
         height: 150px;
         width: 200px;
     }

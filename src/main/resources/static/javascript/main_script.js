@@ -1,7 +1,5 @@
 
 $().ready(function() {
-
-
     let subtotal = 0;
     let listIds = [];
 
@@ -10,17 +8,20 @@ $().ready(function() {
 
     $('.add-to-cart').click(function () {
         let id = $(this).data('id');
+        listIds.push(id)
+        let url = `http://localhost:8080/add/cart/${id}/`
+        console.log(url)
+        fetch(url)
+            .then(response => console.log("Success"))
+            .catch(error => {
+                console.log(error);
+            });
 
-            listIds.push(id)
-            let url = `http://localhost:8080/add/cart/${id}/`
-            console.log(url)
-            fetch(url)
-                .then(response => console.log("Success"))
-                .catch(error => {
-                    console.log(error);
-                });
-            let price = $(this).data('price');
-            subtotal += price;
+        // how many items in cart
+        document.getElementById('cartCount').textContent = listIds.length.toString();
+
+        let price = $(this).data('price');
+        subtotal += price;
     });
 
     function change_value(factor){
@@ -59,7 +60,6 @@ $().ready(function() {
         }
     }
 
-
     $('.minus').click(change_value(-1));
     $('.plus').click(change_value(1));
 
@@ -79,12 +79,15 @@ $().ready(function() {
         $(this).parent().parent().parent().remove()
 
         // after removing the last element showing new content
-        let boxCount = document.querySelectorAll(".box")
+        let boxCount = document.querySelectorAll(".cart-box")
         if (boxCount.length === 0) {
             document.getElementById("right-bar").style.display = "none"
             document.getElementById("empty-cart").style.display = "block"
 
         }
+
+        // how many items in cart
+        document.getElementById('cartCount').textContent = document.querySelectorAll(".cart-box").length.toString();
         // document.getElementById("#items-price").textContent=subtotal.toString() + " PLN";
     });
 });

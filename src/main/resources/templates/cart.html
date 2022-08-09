@@ -12,7 +12,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script type="text/javascript" th:src="@{../javascript/script.js}"></script>
+    <script type="text/javascript" th:src="@{../javascript/main_script.js}"></script>
+    <script type="text/javascript" th:src="@{../javascript/cart_script.js}"></script>
 
 </head>
 <body>
@@ -61,7 +62,7 @@
         <div class="shop">
             <!-- trzeba dodac id, zeby sie odroznialo do usuwania + sumowania ceny
             warunek if game.id = id -->
-            <div class="box" th:each="game: ${gamesIds}">
+            <div class="cart-box" th:each="game: ${gamesIds}">
                 <img th:src="@{${'../images-html/' + game.id + '.jpg'}}">
                 <div class="content">
                     <h3 th:text="${game.name}"></h3>
@@ -70,7 +71,9 @@
                     <!-- amount of products -->
                     <div class="amount">
                         <button type="button" class="minus" th:data-id="${game.id}">-</button>
-                        <input type="text" value="1" class="amount-input"/>
+
+                        <!-- todo: trzeba przekazac quantity z bazy danych -->
+                        <input type="text" th:value="${game.quantity}" class="amount-input"/>
                         <button type="button" class="plus" th:data-id="${game.id}">+</button>
                     </div>
 
@@ -105,22 +108,6 @@
             </a>
         </div>
     </div>
-    <!-- after removing the last element showing new content -->
-    <script>
-        $().ready(function () {
-            let boxCount = document.querySelectorAll(".box")
-            if (boxCount.length > 0) {
-                document.getElementById("empty-cart").style.display = "none"
-                document.getElementById("right-bar").style.display = "block"
-
-            } else {
-                document.getElementById("empty-cart").style.display = "block"
-                document.getElementById("right-bar").style.display = "none"
-            }
-
-            //
-        });
-    </script>
 </div>
 
 </body>

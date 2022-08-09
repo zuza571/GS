@@ -19,6 +19,8 @@ public class CartController {
     // endpoint
     @RequestMapping("/cart")
     public String cartPage(Model model) {
+
+        // todo: dodac quantity do cart.html
         List<Game> gamesIds = new ArrayList<>();
         List<Integer> cartIds;
         cartIds = SQLiteDataBase.takeAllCartId();
