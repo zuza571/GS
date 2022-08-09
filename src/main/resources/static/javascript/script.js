@@ -36,10 +36,13 @@ $().ready(function() {
     function change_value(factor){
         return function(){
             let id = $(this).data('id');
+            console.log("dupa")
 
-            let add_quantity_btns = document.querySelectorAll(".plus")
+            let add_quantity_btns = document.querySelectorAll(".amount")
+            console.log(add_quantity_btns.length)
             for (const btn of add_quantity_btns) {
                 btn.addEventListener("click", event => {
+                    console.log("cipa")
                     let url = `http://localhost:8080/add/quantity/${id}/`
                     console.log(url)
                     fetch(url)
@@ -50,7 +53,7 @@ $().ready(function() {
                 })
             }
 
-
+            console.log("chuj")
             let parent = $(this).parent();
             let input = parseInt(parent.find(".amount-input").val());
             let count;

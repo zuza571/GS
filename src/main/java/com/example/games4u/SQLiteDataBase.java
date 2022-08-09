@@ -268,14 +268,16 @@ public class SQLiteDataBase {
         Connection conn = SQLiteDataBase.connect();
 
         String query1 = "SELECT * FROM cart_id WHERE id = " + "\"" + id + "\"";
-        String query2 = "REPLACE INTO cart_id(quantity) VALUES(?)";
+        String query2 = "REPLACE INTO cart_id(id,quantity) VALUES(?,?)";
 
         try {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query1);
+            int oldId = rs.getInt(1);
             int newQuantity = rs.getInt(2)+1;
 
-            try (PreparedStatement pstmt = conn.prepareStatement(query2)){
+            try (PreparedStatement pstmt = conn.prepareStatement(query2)) {
+                pstmt.setInt(1, oldId);
                 pstmt.setInt(2, newQuantity);
                 pstmt.executeUpdate();
             } catch (SQLException throwables) {
@@ -292,7 +294,7 @@ public class SQLiteDataBase {
         }
     }
 
-    public static void substractQuantity(int id) {
+    public static void subtractQuantity(int id) {
         Connection conn = SQLiteDataBase.connect();
 
         String query1 = "SELECT * FROM cart_id WHERE id = " + "\"" + id + "\"";
