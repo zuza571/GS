@@ -38,7 +38,6 @@ $().ready(function() {
             let id = $(this).data('id');
 
             let add_quantity_btns = document.querySelectorAll(".plus")
-            let subtract_quantity_btns = document.querySelectorAll(".minus")
 
             for (const btn of add_quantity_btns) {
                 btn.addEventListener("click", event => {
@@ -51,6 +50,8 @@ $().ready(function() {
                         });
                 })
             }
+
+            let subtract_quantity_btns = document.querySelectorAll(".minus")
 
             for (const btn of subtract_quantity_btns) {
                 btn.addEventListener("click", event => {
