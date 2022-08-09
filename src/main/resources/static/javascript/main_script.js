@@ -17,11 +17,22 @@ $().ready(function() {
                 console.log(error);
             });
 
+        // todo: jak sie kilka razy doda to samo to sie nalicza
         // how many items in cart
         // reading from dataset (database value) - right after loading the page
         let count = parseInt(document.getElementById('cartCount').dataset.count)
         // dataset value + new values added after loading the page
         document.getElementById('cartCount').textContent = (listIds.length + count).toString()
+
+        // item added to cart window
+        let parent = $(this).parent().parent()
+        let box = parent.find("#box-wrap")
+
+        box.show();
+        setTimeout(function() {
+            box.fadeOut();
+        }, 2000);
+
 
         let price = $(this).data('price');
         subtotal += price;
@@ -93,4 +104,5 @@ $().ready(function() {
         document.getElementById('cartCount').textContent = document.querySelectorAll(".cart-box").length.toString();
         // document.getElementById("#items-price").textContent=subtotal.toString() + " PLN";
     });
+
 });
