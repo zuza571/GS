@@ -242,7 +242,6 @@ body {
     display: inline-block;
     vertical-align: middle;
 }
-
 #box-wrap {
     display: none; /* hidden by default */
     width: fit-content;

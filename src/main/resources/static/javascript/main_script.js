@@ -8,6 +8,9 @@ $().ready(function() {
 
         // todo: po odswiezeniu strony tez mozna ponownie dodac rzeczy ktore sa w koszyku
 
+        let ids = $(this).data('list')
+
+
         // if item is already on the list, don't push it
         let isOnTheList = 0
         for(let i = 0; i < listIds.length; i++){
@@ -98,7 +101,6 @@ $().ready(function() {
         let id = $(this).data('id');
         let price = $(this).data("price")
         subtotal -= price
-        listIds.push(id)
 
         let url = `http://localhost:8080/remove/cart/${id}/`
         console.log(url)
