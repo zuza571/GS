@@ -41,10 +41,6 @@
                            <a class="nav-link" href="/cart">
                                <i class="fa fa-shopping-basket"></i>
                                <span class="badge badge-warning" id="cartCount" th:text="${#lists.size(gamesIds)}" th:data-count="${#lists.size(gamesIds)}"></span>
-                               <script th:inline="javascript">
-                                   let listIdsFromDB = [];
-                                   listIdsFromDB = /*[[${gamesIds}]]*/
-                               </script>
                                Cart
                            </a>
                        </li>
