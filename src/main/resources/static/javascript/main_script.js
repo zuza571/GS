@@ -8,13 +8,10 @@ $().ready(function() {
 
         // todo: po odswiezeniu strony tez mozna ponownie dodac rzeczy ktore sa w koszyku
 
-        let ids = $(this).data('list')
-
-
         // if item is already on the list, don't push it
         let isOnTheList = 0
-        for(let i = 0; i < listIds.length; i++){
-            if (id === listIds[i]) {
+        for(let i = 0; i < listIdsFromDB.length; i++){
+            if (id === listIdsFromDB[i] || id === listIds[i]) {
                 isOnTheList = 1
             }
         }
@@ -22,8 +19,6 @@ $().ready(function() {
         if (isOnTheList === 0) {
             listIds.push(id)
         }
-        console.log(listIds.length)
-        console.log(listIds)
 
         let url = `http://localhost:8080/add/cart/${id}/`
         console.log(url)
