@@ -3,12 +3,26 @@ $().ready(function() {
     let subtotal = 0;
     let listIds = [];
 
-    // jak miec dostep do rozmiaru listy????
-    //$('#cartCount').textContent =
-
     $('.add-to-cart').click(function () {
         let id = $(this).data('id');
-        listIds.push(id)
+
+        // todo: mozna kilka razy wpisac niektore rzeczy,
+        //  po odswiezeniu strony tez mozna ponownie dodac rzeczy ktore sa w koszyku
+
+        // if item is already on the list, don't push it
+        let isOnTheList = 0
+        for(let i = 0; i < listIds.length; i++){
+            if (id === i) {
+                isOnTheList = 1
+            }
+        }
+
+        if (isOnTheList === 0) {
+            listIds.push(id)
+        }
+        console.log(listIds.length)
+        console.log(listIds)
+
         let url = `http://localhost:8080/add/cart/${id}/`
         console.log(url)
         fetch(url)
@@ -17,7 +31,6 @@ $().ready(function() {
                 console.log(error);
             });
 
-        // todo: jak sie kilka razy doda to samo to sie nalicza
         // how many items in cart
         // reading from dataset (database value) - right after loading the page
         let count = parseInt(document.getElementById('cartCount').dataset.count)
@@ -26,14 +39,19 @@ $().ready(function() {
 
         // item added to cart window
         let parent = $(this).parent().parent()
-        let box = parent.find("#box-wrap")
+        let messageBox = parent.find("#box-wrap")
+        let txt = parent.find("#box-txt")
 
-        box.show();
+        if (isOnTheList === 1) {
+            txt.text("You already have this item in your cart")
+        }
+
+        messageBox.show();
         setTimeout(function() {
-            box.fadeOut();
+            messageBox.fadeOut();
         }, 2000);
 
-
+        // subtotal price
         let price = $(this).data('price');
         subtotal += price;
     });
