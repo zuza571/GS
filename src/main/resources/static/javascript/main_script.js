@@ -6,13 +6,12 @@ $().ready(function() {
     $('.add-to-cart').click(function () {
         let id = $(this).data('id');
 
-        // todo: mozna kilka razy wpisac niektore rzeczy,
-        //  po odswiezeniu strony tez mozna ponownie dodac rzeczy ktore sa w koszyku
+        // todo: po odswiezeniu strony tez mozna ponownie dodac rzeczy ktore sa w koszyku
 
         // if item is already on the list, don't push it
         let isOnTheList = 0
         for(let i = 0; i < listIds.length; i++){
-            if (id === i) {
+            if (id === listIds[i]) {
                 isOnTheList = 1
             }
         }
