@@ -21,9 +21,9 @@ public class CartController {
     @RequestMapping("/cart")
     public String cartPage(Model model) {
 
-        // todo: dodac quantity do cart.html
         List<Game> gamesIds = new ArrayList<>();
         int quantity = 0;
+        int subtotal = 0;
         List<CartQuantity> cartQuantities;
         cartQuantities = SQLiteDataBase.takeAllCartId();
         for(int i = 0; i < cartQuantities.size(); i++) {
@@ -31,11 +31,13 @@ public class CartController {
             Game game = SQLiteDataBase.sellectById(id);
             game.setQuantity(cartQuantities.get(i).getQuantity());
             quantity = quantity + game.getQuantity();
+            subtotal = subtotal + game.getPrice();
             gamesIds.add(game);
         }
 
         model.addAttribute("gamesIds", gamesIds);
         model.addAttribute("quantity", quantity);
+        model.addAttribute("subtotal", subtotal);
         return "cart.html";
     }
 

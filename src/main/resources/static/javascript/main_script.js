@@ -1,8 +1,11 @@
 
 $().ready(function() {
-    let subtotal = 0;
-    let listIds = [];
+    let globalSubtotal = 0;
+    let total = 0;
+    // changed quantities after page load
     let globalQuantity = 0;
+
+    let listIds = [];
 
     $('.add-to-cart').click(function () {
         let id = $(this).data('id');
@@ -50,14 +53,20 @@ $().ready(function() {
 
         // subtotal price
         let price = $(this).data('price');
-        subtotal += price;
+        globalSubtotal += price;
     });
 
     function change_value(factor){
         return function() {
+            let parent = $(this).parent();
             let id = $(this).data('id');
+            let price = $(this).data('price');
+            let subtotal = $(this).data('subtotal')
+            // quantity from database
             let quantity = $(this).data('quantity');
-            let game_quantity = $(document.getElementsByClassName("remove-button")).data('data_quantity');
+            // current game quantity from database
+            let game_quantity = $(parent.parent().find(".remove-button")).data('game_quantity');
+
 
             if (factor === 1) {
                 let url = `http://localhost:8080/add/quantity/${id}/`
@@ -79,21 +88,43 @@ $().ready(function() {
                     });
             }
 
-            let parent = $(this).parent();
             let input = parseInt(parent.find(".amount-input").val());
             let count;
             if (factor === -1 && input === 1) {
                 count = input;
                 quantity = quantity + globalQuantity;
             } else {
+
+                // how much it changed
+                console.log(globalSubtotal)
+                globalSubtotal += factor * game_quantity * price
+                console.log(globalSubtotal)
+
+                // subtract old quantity * price
+                console.log(subtotal)
+                subtotal = subtotal - globalSubtotal
+                console.log(subtotal)
+
                 count = input + factor;
                 quantity = quantity + factor + globalQuantity;
                 globalQuantity += factor;
                 game_quantity += factor;
+
+
+                // subtotal price
+                subtotal += factor * game_quantity * price
+
+                total = subtotal +  15;
             }
+
+
             parent.find("input.amount-input").val(count);
             document.getElementById("cartCount").textContent = quantity;
-            $(document.getElementsByClassName("remove-button")).data("game_quantity", game_quantity);
+            // update game quantity in remove button to have current game quantity during removal
+            $(parent.parent().find(".remove-button")).data("game_quantity", game_quantity);
+
+            document.getElementById("items-price").textContent = subtotal + " PLN";
+            document.getElementById("items-price-total").textContent = total + " PLN";
         }
     }
 
@@ -103,9 +134,11 @@ $().ready(function() {
     $('.remove-button').click(function () {
         let id = $(this).data('id');
         let price = $(this).data("price");
+        let subtotal = $(this).data('subtotal')
+        // quantity from database
         let quantity = $(this).data('quantity');
+        // current game quantity from database updated by + and -
         let game_quantity = $(this).data('game_quantity');
-        subtotal -= price
 
         let url = `http://localhost:8080/remove/cart/${id}/`
         console.log(url)
@@ -125,14 +158,18 @@ $().ready(function() {
         }
 
         // how many items in cart
-        console.log(quantity)
-        console.log(game_quantity)
         quantity = quantity + globalQuantity - game_quantity;
         globalQuantity -= game_quantity;
+
+        // subtotal price
+        console.log(subtotal)
+        subtotal -= game_quantity * price;
+        total = subtotal + 15;
+
         document.getElementById("cartCount").textContent = quantity;
 
-        // document.getElementById('cartCount').textContent = document.querySelectorAll(".cart-box").length.toString();
-        // document.getElementById("#items-price").textContent=subtotal.toString() + " PLN";
+        document.getElementById("items-price").textContent = globalSubtotal + " PLN";
+        document.getElementById("items-price-total").textContent = total + " PLN";
     });
 
 });

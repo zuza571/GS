@@ -70,16 +70,15 @@
 
                     <!-- amount of products -->
                     <div class="amount">
-                        <button type="button" class="minus" th:data-id="${game.id}" th:data-quantity="${quantity}">-</button>
-
-                        <!-- todo: trzeba przekazac quantity z bazy danych -->
+                        <!-- we pass quantity to update cartCounter after + and - operations -->
+                        <button type="button" class="minus" th:data-id="${game.id}" th:data-quantity="${quantity}" th:data-price="${game.price}" th:data-subtotal="${subtotal}">-</button>
                         <input type="text" th:value="${game.quantity}" class="amount-input"/>
-                        <button type="button" class="plus" th:data-id="${game.id}" th:data-quantity="${quantity}">+</button>
+                        <button type="button" class="plus" th:data-id="${game.id}" th:data-quantity="${quantity}" th:data-price="${game.price}" th:data-subtotal="${subtotal}">+</button>
                     </div>
 
                     <p class="btn-area">
                         <i aria-hidden="true" class="fa fa-trash"></i>
-                        <span class="remove-button" th:data-id="${game.id}" th:data-price="${game.price}" th:data-game_quantity="${game.quantity}" th:data-quantity="${quantity}">Remove</span>
+                        <span class="remove-button" th:data-id="${game.id}" th:data-price="${game.price}" th:data-game_quantity="${game.quantity}" th:data-quantity="${quantity}" th:data-subtotal="${subtotal}">Remove</span>
                     </p>
                 </div>
             </div>
@@ -88,7 +87,7 @@
             <p>
                 <span>Subtotal</span>
                 <!-- cena musi byc sumowana w pętli  i reagowac na + i -, REMOVE -->
-                <span id="items-price" th:text="' '"></span>
+                <span id="items-price" th:text="${subtotal} + ' PLN'"></span>
             </p>
             <hr>
 
@@ -100,7 +99,7 @@
             <p>
                 <span>Total</span>
                 <!-- tu tez sumowac cene ale jakos trzeba chyba parsowac -->
-                <span id="items-price-total" th:text="' '"></span>
+                <span id="items-price-total" th:text="${subtotal} + 15 + ' PLN'"></span>
             </p>
             <a href="/checkout">
                 <i class="fa fa-shopping-cart"></i>
