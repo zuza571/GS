@@ -8,7 +8,7 @@ public class Game {
     private String type;
     private int price;
     private BufferedImage image;
-    private int quantity = 1;
+    private int quantity;
 
     //public Game(int id, String name, String type, int price, Blob image) {
     public Game(int id, String name, String type, int price) {
@@ -66,7 +66,7 @@ public class Game {
         return quantity;
     }
 
-    private void setQuantity(int quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 

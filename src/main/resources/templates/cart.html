@@ -40,7 +40,7 @@
                     <li class="nav-item">
                         <a class="nav-link" id="cart" href="/cart">
                             <i class="fa fa-shopping-basket"></i>
-                            <span class="badge badge-warning" id="cartCount" th:text="${#lists.size(gamesIds)}"></span>
+                            <span class="badge badge-warning" id="cartCount" th:text="${quantity}"></span>
                             Cart
                         </a>
                     </li>
@@ -70,16 +70,16 @@
 
                     <!-- amount of products -->
                     <div class="amount">
-                        <button type="button" class="minus" th:data-id="${game.id}">-</button>
+                        <button type="button" class="minus" th:data-id="${game.id}" th:data-quantity="${quantity}">-</button>
 
                         <!-- todo: trzeba przekazac quantity z bazy danych -->
                         <input type="text" th:value="${game.quantity}" class="amount-input"/>
-                        <button type="button" class="plus" th:data-id="${game.id}">+</button>
+                        <button type="button" class="plus" th:data-id="${game.id}" th:data-quantity="${quantity}">+</button>
                     </div>
 
                     <p class="btn-area">
                         <i aria-hidden="true" class="fa fa-trash"></i>
-                        <span class="remove-button" th:data-id="${game.id}" th:data-price="${game.price}">Remove</span>
+                        <span class="remove-button" th:data-id="${game.id}" th:data-price="${game.price}" th:data-game_quantity="${game.quantity}" th:data-quantity="${quantity}">Remove</span>
                     </p>
                 </div>
             </div>

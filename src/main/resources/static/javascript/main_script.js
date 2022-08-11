@@ -2,6 +2,7 @@
 $().ready(function() {
     let subtotal = 0;
     let listIds = [];
+    let globalQuantity = 0;
 
     $('.add-to-cart').click(function () {
         let id = $(this).data('id');
@@ -55,6 +56,8 @@ $().ready(function() {
     function change_value(factor){
         return function() {
             let id = $(this).data('id');
+            let quantity = $(this).data('quantity');
+            let game_quantity = $(document.getElementsByClassName("remove-button")).data('data_quantity');
 
             if (factor === 1) {
                 let url = `http://localhost:8080/add/quantity/${id}/`
@@ -81,10 +84,16 @@ $().ready(function() {
             let count;
             if (factor === -1 && input === 1) {
                 count = input;
+                quantity = quantity + globalQuantity;
             } else {
                 count = input + factor;
+                quantity = quantity + factor + globalQuantity;
+                globalQuantity += factor;
+                game_quantity += factor;
             }
             parent.find("input.amount-input").val(count);
+            document.getElementById("cartCount").textContent = quantity;
+            $(document.getElementsByClassName("remove-button")).data("game_quantity", game_quantity);
         }
     }
 
@@ -93,7 +102,9 @@ $().ready(function() {
 
     $('.remove-button').click(function () {
         let id = $(this).data('id');
-        let price = $(this).data("price")
+        let price = $(this).data("price");
+        let quantity = $(this).data('quantity');
+        let game_quantity = $(this).data('game_quantity');
         subtotal -= price
 
         let url = `http://localhost:8080/remove/cart/${id}/`
@@ -114,7 +125,13 @@ $().ready(function() {
         }
 
         // how many items in cart
-        document.getElementById('cartCount').textContent = document.querySelectorAll(".cart-box").length.toString();
+        console.log(quantity)
+        console.log(game_quantity)
+        quantity = quantity + globalQuantity - game_quantity;
+        globalQuantity -= game_quantity;
+        document.getElementById("cartCount").textContent = quantity;
+
+        // document.getElementById('cartCount').textContent = document.querySelectorAll(".cart-box").length.toString();
         // document.getElementById("#items-price").textContent=subtotal.toString() + " PLN";
     });
 

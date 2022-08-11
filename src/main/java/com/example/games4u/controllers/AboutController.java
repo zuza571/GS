@@ -1,5 +1,6 @@
 package com.example.games4u.controllers;
 
+import com.example.games4u.CartQuantity;
 import com.example.games4u.Game;
 import com.example.games4u.SQLiteDataBase;
 import org.springframework.stereotype.Controller;
@@ -16,15 +17,14 @@ public class AboutController {
     // endpoint
     @RequestMapping("/about")
     public String aboutPage(Model model){
-        List<Game> gamesIds = new ArrayList<>();
-        List<Integer> cartIds;
-        cartIds = SQLiteDataBase.takeAllCartId();
-        for(int i:cartIds) {
-            Game game = SQLiteDataBase.sellectById(i);
-            gamesIds.add(game);
+        int quantity = 0;
+        List<CartQuantity> cartQuantities;
+        cartQuantities = SQLiteDataBase.takeAllCartId();
+        for(int i = 0; i < cartQuantities.size(); i++) {
+           quantity = quantity + cartQuantities.get(i).getQuantity();
         }
 
-        model.addAttribute("gamesIds", gamesIds);
+        model.addAttribute("quantity", quantity);
         return "about.html";
     }
 

@@ -188,7 +188,7 @@ public class SQLiteDataBase {
     public static void insertCartById(int id) {
         Connection conn = SQLiteDataBase.connect();
 
-        String sql = "INSERT or REPLACE INTO cart_id(id, quantity) VALUES(?,?)";
+        String sql = "INSERT INTO cart_id(id, quantity) VALUES(?,?)";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
@@ -222,9 +222,9 @@ public class SQLiteDataBase {
         }
     }
 
-    public static List<Integer> takeAllCartId() {
+    public static List<CartQuantity> takeAllCartId() {
         Connection conn = SQLiteDataBase.connect();
-        List<Integer> cartId = new ArrayList<>();
+        List<CartQuantity> cartQuantities = new ArrayList<>();
         String sql = "SELECT * FROM cart_id";
 
         try {
@@ -232,7 +232,10 @@ public class SQLiteDataBase {
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                cartId.add(rs.getInt(1));
+                CartQuantity cartQuantity = new CartQuantity();
+                cartQuantity.setId(rs.getInt(1));
+                cartQuantity.setQuantity(rs.getInt(2));
+                cartQuantities.add(cartQuantity);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -244,7 +247,7 @@ public class SQLiteDataBase {
             throwables.printStackTrace();
         }
 
-        return cartId;
+        return cartQuantities;
     }
 
     public static void removeByCartId(int id) {

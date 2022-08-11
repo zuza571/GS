@@ -48,14 +48,19 @@ public class Games4UApplication {
         model.addAttribute("games", games);
 
         List<Game> gamesIds = new ArrayList<>();
-        List<Integer> cartIds;
-        cartIds = SQLiteDataBase.takeAllCartId();
-        for(int i:cartIds) {
-            Game game = SQLiteDataBase.sellectById(i);
+        int quantity = 0;
+        List<CartQuantity> cartQuantities;
+        cartQuantities = SQLiteDataBase.takeAllCartId();
+        for(int i = 0; i < cartQuantities.size(); i++) {
+            int id = cartQuantities.get(i).getId();
+            Game game = SQLiteDataBase.sellectById(id);
+            game.setQuantity(cartQuantities.get(i).getQuantity());
+            quantity = quantity + game.getQuantity();
             gamesIds.add(game);
         }
 
         model.addAttribute("gamesIds", gamesIds);
+        model.addAttribute("quantity", quantity);
         return "index.html";
     }
 
