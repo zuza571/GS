@@ -98,7 +98,7 @@ $().ready(function() {
 
                 // subtract old quantity * price
                 console.log(globalSubtotal)
-                globalSubtotal -= factor * game_quantity * price
+                globalSubtotal -= game_quantity * price
                 console.log(globalSubtotal)
 
                 count = input + factor;
