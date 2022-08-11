@@ -9,6 +9,7 @@ public class Game {
     private int price;
     private BufferedImage image;
     private int quantity;
+    private boolean isInCart;
 
     //public Game(int id, String name, String type, int price, Blob image) {
     public Game(int id, String name, String type, int price) {
@@ -18,6 +19,7 @@ public class Game {
         this.price = price;
         this.image = image;
         this.quantity = quantity;
+        this.isInCart = isInCart;
     }
 
     public Game() {}
@@ -70,4 +72,9 @@ public class Game {
         this.quantity = quantity;
     }
 
+    public boolean isInCart() { return isInCart; }
+
+    public void setInCart(boolean inCart) {
+        isInCart = inCart;
+    }
 }

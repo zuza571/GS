@@ -20,7 +20,6 @@ public class CartController {
     // endpoint
     @RequestMapping("/cart")
     public String cartPage(Model model) {
-
         List<Game> gamesIds = new ArrayList<>();
         int quantity = 0;
         int subtotal = 0;

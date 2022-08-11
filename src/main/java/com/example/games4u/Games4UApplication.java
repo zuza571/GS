@@ -45,9 +45,7 @@ public class Games4UApplication {
         List<Game> games;
         Connection conn = SQLiteDataBase.connect();
         games = SQLiteDataBase.selectAll(conn);
-        model.addAttribute("games", games);
 
-        List<Game> gamesIds = new ArrayList<>();
         int quantity = 0;
         List<CartQuantity> cartQuantities;
         cartQuantities = SQLiteDataBase.takeAllCartId();
@@ -56,15 +54,17 @@ public class Games4UApplication {
             Game game = SQLiteDataBase.sellectById(id);
             game.setQuantity(cartQuantities.get(i).getQuantity());
             quantity = quantity + game.getQuantity();
-            gamesIds.add(game);
         }
 
-        model.addAttribute("gamesIds", gamesIds);
+        for (int i = 0; i < cartQuantities.size(); i++) {
+            if (games.get(i).getId() == cartQuantities.get(i).getId())
+                games.get(i).setInCart(true);
+        }
+
+        model.addAttribute("games", games);
         model.addAttribute("quantity", quantity);
         return "index.html";
     }
-
-
 
     @RequestMapping("/add/cart/{id}")
     public @ResponseBody ResponseEntity addToCart(@PathVariable(value = "id") int id) {

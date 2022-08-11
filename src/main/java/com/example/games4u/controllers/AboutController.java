@@ -1,13 +1,11 @@
 package com.example.games4u.controllers;
 
 import com.example.games4u.CartQuantity;
-import com.example.games4u.Game;
 import com.example.games4u.SQLiteDataBase;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
 import java.util.List;
 
 

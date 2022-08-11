@@ -1,27 +1,33 @@
 
 $().ready(function() {
-    let globalSubtotal = 0;
-    let total = 0;
+    let globalSubtotal = 0
+    let total = 0
     // changed quantities after page load
-    let globalQuantity = 0;
+    let globalQuantity = 0
 
-    let listIds = [];
+    let listIds = []
 
     $('.add-to-cart').click(function () {
-        let id = $(this).data('id');
+        let id = $(this).data('id')
+
+        let isInCart = $(this).data('is_in_cart')
+        console.log(isInCart)
 
         // todo: po odswiezeniu strony tez mozna ponownie dodac rzeczy ktore sa w koszyku
+        // jesli jest dodany do koszyka zmiana isInCart
         // if item is already on the list, don't push it
         let isOnTheList = 0
         for (let i = 0; i < listIds.length; i++){
             if (id === listIds[i]) {
                 isOnTheList = 1
+                isInCart = true
             }
         }
-
-        if (isOnTheList === 0) {
+        if (isOnTheList === 0 && isInCart === false) {
             listIds.push(id)
         }
+        console.log(isInCart)
+
 
         let url = `http://localhost:8080/add/cart/${id}/`
         console.log(url)
@@ -42,7 +48,7 @@ $().ready(function() {
         let messageBox = parent.find("#box-wrap")
         let txt = parent.find("#box-txt")
 
-        if (isOnTheList === 1) {
+        if (isOnTheList === 1 || isInCart === true) {
             txt.text("You already have this item in your cart")
         }
 
@@ -66,7 +72,6 @@ $().ready(function() {
             let quantity = $(this).data('quantity');
             // current game quantity from database
             let game_quantity = $(parent.parent().find(".remove-button")).data('game_quantity');
-
 
             if (factor === 1) {
                 let url = `http://localhost:8080/add/quantity/${id}/`
@@ -95,27 +100,23 @@ $().ready(function() {
                 quantity = quantity + globalQuantity;
 
             } else {
-
-
                 // subtract old quantity * price
-                console.log(globalSubtotal)
                 globalSubtotal -= game_quantity * price
-                console.log(globalSubtotal)
 
+                // change quantity of product
                 count = input + factor;
+                // change cartCounter
                 quantity = quantity + factor + globalQuantity;
                 globalQuantity += factor;
                 game_quantity += factor;
 
-
-                // subtotal price
+                // subtotal and total prices
                 globalSubtotal += game_quantity * price
                 subtotal += globalSubtotal
                 total = subtotal +  15;
                 document.getElementById("items-price").textContent = subtotal + " PLN";
                 document.getElementById("items-price-total").textContent = total + " PLN";
             }
-
 
             parent.find("input.amount-input").val(count);
             document.getElementById("cartCount").textContent = quantity;
@@ -150,20 +151,17 @@ $().ready(function() {
         if (boxCount.length === 0) {
             document.getElementById("right-bar").style.display = "none"
             document.getElementById("empty-cart").style.display = "block"
-
         }
 
-        // how many items in cart
+        // change cartCounter
         quantity = quantity + globalQuantity - game_quantity;
         globalQuantity -= game_quantity;
+        document.getElementById("cartCount").textContent = quantity;
 
-        // subtotal price
+        // subtotal and total prices
         subtotal = (subtotal + globalSubtotal) - (game_quantity * price);
         globalSubtotal = globalSubtotal - (game_quantity * price);
         total = subtotal + 15;
-
-        document.getElementById("cartCount").textContent = quantity;
-
         document.getElementById("items-price").textContent = subtotal + " PLN";
         document.getElementById("items-price-total").textContent = total + " PLN";
     });
