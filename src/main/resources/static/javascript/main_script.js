@@ -108,7 +108,7 @@ $().ready(function() {
 
 
                 // subtotal price
-                globalSubtotal += factor * game_quantity * price
+                globalSubtotal += game_quantity * price
                 console.log(globalSubtotal)
                 subtotal += globalSubtotal
 
