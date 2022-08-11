@@ -14,7 +14,7 @@ $().ready(function() {
         console.log(isInCart)
 
         // todo: po odswiezeniu strony tez mozna ponownie dodac rzeczy ktore sa w koszyku
-        // jesli jest dodany do koszyka zmiana isInCart
+        // nie dziala po zmianie ilosci rzeczy w koszyku
         // if item is already on the list, don't push it
         let isOnTheList = 0
         for (let i = 0; i < listIds.length; i++){
@@ -26,8 +26,6 @@ $().ready(function() {
         if (isOnTheList === 0 && isInCart === false) {
             listIds.push(id)
         }
-        console.log(isInCart)
-
 
         let url = `http://localhost:8080/add/cart/${id}/`
         console.log(url)

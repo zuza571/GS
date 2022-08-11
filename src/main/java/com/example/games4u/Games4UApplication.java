@@ -57,8 +57,10 @@ public class Games4UApplication {
         }
 
         for (int i = 0; i < cartQuantities.size(); i++) {
-            if (games.get(i).getId() == cartQuantities.get(i).getId())
+            if (games.get(i).getId() == cartQuantities.get(i).getId()) {
                 games.get(i).setInCart(true);
+                System.out.println(games.get(i).isInCart());
+            }
         }
 
         model.addAttribute("games", games);
