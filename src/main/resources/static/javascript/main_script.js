@@ -95,15 +95,11 @@ $().ready(function() {
                 quantity = quantity + globalQuantity;
             } else {
 
-                // how much it changed
-                console.log(globalSubtotal)
-                globalSubtotal += factor * game_quantity * price
-                console.log(globalSubtotal)
 
                 // subtract old quantity * price
-                console.log(subtotal)
-                subtotal = subtotal - globalSubtotal
-                console.log(subtotal)
+                console.log(globalSubtotal)
+                globalSubtotal -= factor * game_quantity * price
+                console.log(globalSubtotal)
 
                 count = input + factor;
                 quantity = quantity + factor + globalQuantity;
@@ -112,7 +108,9 @@ $().ready(function() {
 
 
                 // subtotal price
-                subtotal += factor * game_quantity * price
+                globalSubtotal += factor * game_quantity * price
+                console.log(globalSubtotal)
+                subtotal += globalSubtotal
 
                 total = subtotal +  15;
             }
