@@ -5,7 +5,6 @@ $().ready(function() {
 
     $('.add-to-cart').click(function () {
         let id = $(this).data('id');
-        //let listIds = []
 
         // todo: po odswiezeniu strony tez mozna ponownie dodac rzeczy ktore sa w koszyku
         // if item is already on the list, don't push it
