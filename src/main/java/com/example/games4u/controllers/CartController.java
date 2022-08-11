@@ -31,7 +31,7 @@ public class CartController {
             Game game = SQLiteDataBase.sellectById(id);
             game.setQuantity(cartQuantities.get(i).getQuantity());
             quantity = quantity + game.getQuantity();
-            subtotal = subtotal + game.getPrice();
+            subtotal = subtotal + (game.getPrice() * game.getQuantity());
             gamesIds.add(game);
         }
 

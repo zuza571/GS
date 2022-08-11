@@ -61,8 +61,7 @@
         <div class="right-bar">
             <p>
                 <span>Subtotal</span>
-                <!-- cena musi byc sumowana w pętli -->
-                <span id="items-price" th:text="${g1.price} + ' PLN'"></span>
+                <span id="items-price" th:text="${subtotal} + ' PLN'"></span>
             </p>
             <hr>
             <p>
@@ -72,8 +71,7 @@
             <hr>
             <p>
                 <span>Total</span>
-                <!-- tu tez sumowac cene ale jakos trzeba chyba parsowac -->
-                <span id="items-price-total" th:text="'0000' + ' PLN'"></span>
+                <span id="items-price-total" th:text="${subtotal} + 15 + ' PLN'"></span>
             </p>
 
             <!-- odpowiedni link do platnosci -->

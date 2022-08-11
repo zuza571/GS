@@ -93,6 +93,7 @@ $().ready(function() {
             if (factor === -1 && input === 1) {
                 count = input;
                 quantity = quantity + globalQuantity;
+
             } else {
 
 
@@ -109,10 +110,10 @@ $().ready(function() {
 
                 // subtotal price
                 globalSubtotal += game_quantity * price
-                console.log(globalSubtotal)
                 subtotal += globalSubtotal
-
                 total = subtotal +  15;
+                document.getElementById("items-price").textContent = subtotal + " PLN";
+                document.getElementById("items-price-total").textContent = total + " PLN";
             }
 
 
@@ -120,9 +121,6 @@ $().ready(function() {
             document.getElementById("cartCount").textContent = quantity;
             // update game quantity in remove button to have current game quantity during removal
             $(parent.parent().find(".remove-button")).data("game_quantity", game_quantity);
-
-            document.getElementById("items-price").textContent = subtotal + " PLN";
-            document.getElementById("items-price-total").textContent = total + " PLN";
         }
     }
 
@@ -160,13 +158,13 @@ $().ready(function() {
         globalQuantity -= game_quantity;
 
         // subtotal price
-        console.log(subtotal)
-        subtotal -= game_quantity * price;
+        subtotal = (subtotal + globalSubtotal) - (game_quantity * price);
+        globalSubtotal = globalSubtotal - (game_quantity * price);
         total = subtotal + 15;
 
         document.getElementById("cartCount").textContent = quantity;
 
-        document.getElementById("items-price").textContent = globalSubtotal + " PLN";
+        document.getElementById("items-price").textContent = subtotal + " PLN";
         document.getElementById("items-price-total").textContent = total + " PLN";
     });
 
