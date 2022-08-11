@@ -8,10 +8,9 @@ $().ready(function() {
         //let listIds = []
 
         // todo: po odswiezeniu strony tez mozna ponownie dodac rzeczy ktore sa w koszyku
-
         // if item is already on the list, don't push it
         let isOnTheList = 0
-        for(let i = 0; i < listIds.length; i++){
+        for (let i = 0; i < listIds.length; i++){
             if (id === listIds[i]) {
                 isOnTheList = 1
             }

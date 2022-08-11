@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,10 +54,12 @@ public class Games4UApplication {
             Game game = SQLiteDataBase.sellectById(i);
             gamesIds.add(game);
         }
-        model.addAttribute("gamesIds", gamesIds);
 
+        model.addAttribute("gamesIds", gamesIds);
         return "index.html";
     }
+
+
 
     @RequestMapping("/add/cart/{id}")
     public @ResponseBody ResponseEntity addToCart(@PathVariable(value = "id") int id) {
