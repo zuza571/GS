@@ -191,6 +191,10 @@ body {
 .checkout-content h4 {
     font-size: 15px;
 }
+.checkout-background {
+    background: rgba(184, 185, 185, 0.49);
+    border-radius: 5px;
+}
 .form {
     display: block;
     width: 65%;
