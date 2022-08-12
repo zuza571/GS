@@ -79,7 +79,16 @@
                 <i class="fa fa-shopping-cart"></i>
                 I buy and pay
             </a>
+
+            <div class="checkout-box" th:each="game: ${gamesIds}">
+                <img th:src="@{${'../images-html/' + game.id + '.jpg'}}">
+                <div class="checkout-content">
+                    <h3 th:text="${game.name}"></h3>
+                    <h4 th:text="'quantity: ' + ${game.quantity}"></h4>
+                </div>
+            </div>
         </div>
+
     </div>
 </div>
 
