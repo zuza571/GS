@@ -17,7 +17,6 @@ public class SQLiteDataBase {
 
         // URL for DataBase
         String url = "jdbc:sqlite:" + Paths.get("").toAbsolutePath().toString() + "\\" + fileName;
-        System.out.println("new database url: " + url);
 
         try {
             Connection conn = DriverManager.getConnection(url);
@@ -37,12 +36,11 @@ public class SQLiteDataBase {
         try {
             // db parameters - URL for DataBase
             String url = "jdbc:sqlite:" + Paths.get("").toAbsolutePath().toString() + "\\" + "Games4UDataBase";
-            System.out.println("connection url: " + url);
 
             // create a connection to the database
             conn = DriverManager.getConnection(url);
 
-            System.out.println("Connection to SQLite has been established.");
+            //System.out.println("Connection to SQLite has been established.");
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -54,7 +52,6 @@ public class SQLiteDataBase {
     public static void createNewTable() {
         // SQLite connection string
         String url = "jdbc:sqlite:" + Paths.get("").toAbsolutePath().toString() + "\\" + "Games4UDataBase";
-        System.out.println("table url: " + url);
 
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS games (\n"
@@ -222,9 +219,9 @@ public class SQLiteDataBase {
         }
     }
 
-    public static List<CartQuantity> takeAllCartId() {
+    public static List<CartGames> takeAllCartId() {
         Connection conn = SQLiteDataBase.connect();
-        List<CartQuantity> cartQuantities = new ArrayList<>();
+        List<CartGames> cartGames = new ArrayList<>();
         String sql = "SELECT * FROM cart_id";
 
         try {
@@ -232,10 +229,10 @@ public class SQLiteDataBase {
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                CartQuantity cartQuantity = new CartQuantity();
-                cartQuantity.setId(rs.getInt(1));
-                cartQuantity.setQuantity(rs.getInt(2));
-                cartQuantities.add(cartQuantity);
+                CartGames cartGame = new CartGames();
+                cartGame.setId(rs.getInt(1));
+                cartGame.setQuantity(rs.getInt(2));
+                cartGames.add(cartGame);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -247,7 +244,7 @@ public class SQLiteDataBase {
             throwables.printStackTrace();
         }
 
-        return cartQuantities;
+        return cartGames;
     }
 
     public static void removeByCartId(int id) {

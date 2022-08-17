@@ -1,15 +1,10 @@
 package com.example.games4u;
 
-public class CartQuantity {
+public class CartGames {
     private int id;
     private int quantity;
 
-    public CartQuantity(int id, int quantity) {
-        this.id = id;
-        this.quantity = quantity;
-    }
-
-    public CartQuantity(){}
+    public CartGames(){}
 
     public int getId() {
         return id;

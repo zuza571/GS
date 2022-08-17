@@ -19,7 +19,7 @@
 <!-- it shows when someone will buy the product -->
 <div class="wrapper">
     <div class="project">
-        <form class="form">
+        <form class="form" method="post" action="/payment">
             <fieldset>
                 <a href="/cart" class="back-to-cart" id="cart">
                     <i class="fa fa-shopping-basket"></i>
@@ -27,38 +27,43 @@
                 </a>
                 <h1>Personal data</h1>
                 <div class="form-group">
-                    <label for="nameInput" class="form-label mt-4">Name</label>
-                    <input type="text" class="form-control" id="nameInput" placeholder="Enter your name">
+                    <label for="name" class="form-label mt-4">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
                 </div>
                 <div class="form-group">
-                    <label for="surnameInput" class="form-label mt-4">Surname</label>
-                    <input type="text" class="form-control" id="surnameInput" placeholder="Enter your surname">
+                    <label for="surname" class="form-label mt-4">Surname</label>
+                    <input type="text" class="form-control" id="surname" placeholder="Enter your surname">
                 </div>
                 <div class="form-group">
-                    <label for="emailInput" class="form-label mt-4">Email address</label>
-                    <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Enter your email">
+                    <label for="email" class="form-label mt-4">Email address</label>
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter your email">
                     <small id="emailHelp" class="form-text text-muted">for example kowalski123@example.com</small>
                 </div>
                 <div class="form-group">
-                    <label for="numberInput" class="form-label mt-4">Phone number</label>
-                    <input type="number" class="form-control" id="numberInput" aria-describedby="numberHelp" placeholder="Enter your phone number">
+                    <label for="phoneNumber" class="form-label mt-4">Phone number</label>
+                    <input type="number" class="form-control" id="phoneNumber" aria-describedby="numberHelp" placeholder="Enter your phone number">
                     <small id="numberHelp" class="form-text text-muted">for example +48 123 123 123</small>
                 </div>
                 <div class="form-group">
-                    <label for="addressInput" class="form-label mt-4">Shipping address</label>
-                    <input type="text" class="form-control" id="addressInput" aria-describedby="emailHelp" placeholder="Enter street and house number">
-                    <input type="number" class="form-control" id="postcodeInput" aria-describedby="emailHelp" placeholder="Enter postcode">
-                    <input type="text" class="form-control" id="townItem" aria-describedby="emailHelp" placeholder="Enter your town">
+                    <label for="address" class="form-label mt-4">Shipping address</label>
+                    <input type="text" class="form-control" id="address" aria-describedby="streetHelp" placeholder="Enter street and house number">
+                    <input type="text" class="form-control" id="postcode" aria-describedby="postcodeHelp" placeholder="Enter postcode">
+                    <input type="text" class="form-control" id="city" aria-describedby="cityHelp" placeholder="Enter your city">
                 </div>
 
                 <div class="form-group">
-                    <label for="moreInformation" class="form-label mt-4">More information for seller</label>
-                    <textarea class="form-control" id="moreInformation" rows="3"></textarea>
+                    <label for="moreInfo" class="form-label mt-4">More information for seller</label>
+                    <textarea class="form-control" id="moreInfo" rows="3"></textarea>
                 </div>
+
+                <p>
+                    <i class="fa fa-shopping-cart"></i>
+                    <input type="submit" value="Continue and pay with PayPal" class="btn" id="submit-button">
+                </p>
             </fieldset>
         </form>
 
-        <div class="right-bar">
+        <div class="checkout-right-bar">
             <p>
                 <span>Subtotal</span>
                 <span id="items-price" th:text="${subtotal} + ' PLN'"></span>
@@ -75,20 +80,21 @@
             </p>
 
             <!-- odpowiedni link do platnosci -->
-            <a href="/payu">
+            <!--
+            <a href="/payment">
                 <i class="fa fa-shopping-cart"></i>
-                I buy and pay
+                I buy and pay with PayPal
             </a>
+            -->
 
-            <div class="checkout-background">
-                <div class="checkout-box" th:each="game: ${gamesIds}">
-                    <img th:src="@{${'../images-html/' + game.id + '.jpg'}}">
-                    <div class="checkout-content">
-                        <h3 th:text="${game.name}"></h3>
-                        <h4 th:text="'quantity: ' + ${game.quantity}"></h4>
-                    </div>
+            <div class="checkout-box" th:each="game: ${gamesIds}">
+                <img th:src="@{${'../images-html/' + game.id + '.jpg'}}">
+                <div class="checkout-content">
+                    <h3 th:text="${game.name}"></h3>
+                    <h4 th:text="'quantity: ' + ${game.quantity}"></h4>
                 </div>
             </div>
+
         </div>
 
     </div>

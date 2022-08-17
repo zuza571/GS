@@ -11,17 +11,6 @@ public class Game {
     private int quantity;
     private boolean isInCart;
 
-    //public Game(int id, String name, String type, int price, Blob image) {
-    public Game(int id, String name, String type, int price) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.price = price;
-        this.image = image;
-        this.quantity = quantity;
-        this.isInCart = isInCart;
-    }
-
     public Game() {}
 
     public int getId() {
