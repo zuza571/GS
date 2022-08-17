@@ -25,13 +25,13 @@ public class PayPalService {
             String cancelUrl,
             String successUrl) throws PayPalRESTException {
 
-        List<CartGames> cartQuantities;
+        List<CartGames> cartGames;
         int subtotal = 0;
-        cartQuantities = SQLiteDataBase.takeAllCartId();
-        for(int i = 0; i < cartQuantities.size(); i++) {
-            int id = cartQuantities.get(i).getId();
+        cartGames = SQLiteDataBase.takeAllCartId();
+        for(int i = 0; i < cartGames.size(); i++) {
+            int id = cartGames.get(i).getId();
             Game game = SQLiteDataBase.sellectById(id);
-            game.setQuantity(cartQuantities.get(i).getQuantity());
+            game.setQuantity(cartGames.get(i).getQuantity());
             subtotal = subtotal + (game.getPrice() * game.getQuantity());
             total = subtotal + 15;
         }
