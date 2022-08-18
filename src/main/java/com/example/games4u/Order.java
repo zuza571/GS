@@ -14,11 +14,4 @@ public class Order {
     private String name;
     private String surname;
     private String email;
-    private String phoneNumber;
-    private String street;
-    private String postcode;
-    private String city;
-    private String moreInfo;
-
-    // gry i ilosc
 }

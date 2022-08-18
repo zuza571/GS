@@ -9,21 +9,16 @@ $().ready(function() {
 
     $('.add-to-cart').click(function () {
         let id = $(this).data('id')
-
         let isInCart = $(this).data('is_in_cart')
-        console.log(isInCart)
 
-        // todo: po odswiezeniu strony tez mozna ponownie dodac rzeczy ktore sa w koszyku
-        // nie dziala po zmianie ilosci rzeczy w koszyku
         // if item is already on the list, don't push it
-        let isOnTheList = 0
         for (let i = 0; i < listIds.length; i++){
             if (id === listIds[i]) {
-                isOnTheList = 1
                 isInCart = true
             }
         }
-        if (isOnTheList === 0 && isInCart === false) {
+
+        if (isInCart === false) {
             listIds.push(id)
         }
 
@@ -36,7 +31,7 @@ $().ready(function() {
             });
 
         // how many items in cart
-        // reading from dataset (database value) - right after loading the page
+        // reading from dataset (page load value) - right after loading the page
         let count = parseInt(document.getElementById('cartCount').dataset.count)
         // dataset value + new values added after loading the page
         document.getElementById('cartCount').textContent = (listIds.length + count).toString()
@@ -46,7 +41,7 @@ $().ready(function() {
         let messageBox = parent.find("#box-wrap")
         let txt = parent.find("#box-txt")
 
-        if (isOnTheList === 1 || isInCart === true) {
+        if (isInCart === true) {
             txt.text("You already have this item in your cart")
         }
 
@@ -163,5 +158,34 @@ $().ready(function() {
         document.getElementById("items-price").textContent = subtotal + " PLN";
         document.getElementById("items-price-total").textContent = total + " PLN";
     });
+
+    $('#submit-button').click(function () {
+        let parent = $(this).parent().parent()
+        let name = parent.find('#name').val()
+        let surname = parent.find('#surname').val()
+        let email = parent.find('#email').val()
+        let phoneNumber = parent.find('#phoneNumber').val()
+        let street = parent.find('#street').val()
+        let postcode = parent.find('#postcode').val()
+        let city = parent.find('#city').val()
+        let moreInfo = parent.find('#moreInfo').val()
+
+        let rightBar = parent.parent().parent()
+        let games = rightBar.find('.checkout-box').text()
+        // remove new lines
+        games = games.replace(/\n/g, "")
+
+        let orderData =
+            name + " " + surname + " " + email + " " + phoneNumber + " " + street + " " + postcode + " " + city +
+            " " + moreInfo + " " + games;
+
+        // sending data to java
+        $.ajax({
+            type: 'POST',
+            url: '/order',
+            data: JSON.stringify(orderData),
+            contentType: 'application/json'
+        });
+    })
 
 });
