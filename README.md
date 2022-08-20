@@ -11,8 +11,8 @@
 ## General info
 G4U is a game store with PayPal payment processor and local database.
 
-<img src="./images/store.jpg" data-canonical-src="./images/store.jpg" width="400" height="200"/>
-<img src="./images/cart.jpg" data-canonical-src="./images/cart.jpg" width="400" height="200"/>
+<img src="./images/store.png" data-canonical-src="./images/store.png" width="400" height="200"/>
+<img src="./images/cart.png" data-canonical-src="./images/cart.png" width="400" height="200"/>
 
 ## Features
 - payment processing
